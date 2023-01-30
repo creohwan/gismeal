@@ -9,16 +9,16 @@ import SwiftUI
 
 class NetworkManager: ObservableObject {
     
-    @Published var firstDayMenus: [Menu] = []
-    @Published var secondDayMenus: [Menu] = []
-    @Published var thirdDayMenus: [Menu] = []
-    @Published var fourthDayMenus: [Menu] = []
-    @Published var fifthDayMenus: [Menu] = []
+    @Published var firstDayMenus: Menu = Menu(id: 0, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var secondDayMenus: Menu = Menu(id: 1, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var thirdDayMenus: Menu = Menu(id: 2, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var fourthDayMenus: Menu = Menu(id: 3, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var fifthDayMenus: Menu = Menu(id: 4, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
 
-    var BREAKFAST: [String] = []
-    var LUNCH_A: [String] = []
-    var LUNCH_B: [String] = []
-    var DINNER: [String] = []
+    var breakfast: String = ""
+    var lunch: String = ""
+    var lunch_corner: String = ""
+    var dinner: String = ""
     
     static let shared = NetworkManager()
     
@@ -94,7 +94,7 @@ class NetworkManager: ObservableObject {
         let day = returnedDate["day"]!
 
         //URLRequest
-        guard let url = URL(string: "https://food.podac.poapper.com/v1/menus/\(year)/\(month)/\(day)")
+        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/2/0")
         else { fatalError("Missing URL") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
@@ -114,8 +114,8 @@ class NetworkManager: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         // Decode
-                        let decodedMenus = try JSONDecoder().decode([Menu].self, from: data)
-                        
+                        let decodedMenus = try JSONDecoder().decode(Menu.self, from: data)
+                   
                         switch date {
                         case "first":
                             self.firstDayMenus = decodedMenus
@@ -140,16 +140,14 @@ class NetworkManager: ObservableObject {
     
     // save data
     func saveAtUserDefaults() {
-        for menu in firstDayMenus {
-        
-      
-        }
+
         
         //Store Datas
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(BREAKFAST, forKey: "BREAKFAST")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(LUNCH_A, forKey: "LUNCH_A")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(LUNCH_B, forKey: "LUNCH_B")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(DINNER, forKey: "DINNER")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(breakfast, forKey: "breakfast")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(lunch, forKey: "lunch")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(lunch_corner, forKey: "lunch_corner")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(dinner, forKey: "dinner")
+
     }
     
 }
