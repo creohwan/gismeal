@@ -32,24 +32,43 @@ struct MenuView: View {
                          networkManager.fifthDayMenus]
         
         let menu = menusList[dayIndex]
-        ScrollView {
+
+        ScrollView(showsIndicators: false) {
             VStack {
                 Text("\(month)월 \(day)일 \(weekday)")
                     .font(.title)
                     .bold()
                     .padding(.vertical, 10)
-                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
-                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
-                CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: String(menu.lunch_corner.dropLast(1)))
-                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1)))
+                checkMenu(of: menu)
             }
         }
     }
     
-    private func checkLunch(of menu: Menu) {
+    private func checkMenu(of menu: Menu) -> AnyView {
+        if menu.breakfast == "" && menu.lunch == "" && menu.lunch_corner == "" && menu.dinner == "" {
+            return AnyView(EmptyCardView())
+        }
+        return isLunchConerEmpty(of: menu)
+    }
+    
+    private func isLunchConerEmpty(of menu: Menu) -> AnyView {
         if menu.lunch_corner == "\n\n" {
-           
+            return AnyView(VStack {
+                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
+                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
+                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1)))
+            })
+        } else {
+            return AnyView(VStack {
+                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
+                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
+                CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: String(menu.lunch_corner.dropLast(1)))
+                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1)))
+            })
         }
     }
 }
+
+    
+
 

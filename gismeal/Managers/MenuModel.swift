@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Menu: Codable, Identifiable {
-    var id: Int?
+struct Menu: Codable {
     var breakfast: String
     var lunch: String
     var lunch_corner: String
