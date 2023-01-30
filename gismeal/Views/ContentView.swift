@@ -19,7 +19,7 @@ struct ContentView: View {
     
     @State private var selectedPlace = Place.SecondPlace
     @State private var selectedWidget = Widget.onTime
-    @State private var selectedLanguage = Language.Korean
+    @State private var selectedLanguage: Bool = true
     
     //enum
     enum Place : Int {
@@ -35,11 +35,6 @@ struct ContentView: View {
         case onTime
     }
     
-    enum Language : String {
-        case Korean
-        case English
-    }
-    
     init() {
         UIPageControl.appearance().currentPageIndicatorTintColor = .gray
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
@@ -49,11 +44,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             TabView {
-                MenuView(dayIndex: 0, date: "first")
-                MenuView(dayIndex: 1, date: "second")
-                MenuView(dayIndex: 2, date: "third")
-                MenuView(dayIndex: 3, date: "fourth")
-                MenuView(dayIndex: 4, date: "fifth")
+                MenuView(dayIndex: 0, date: "first", selectedLanguage: $selectedLanguage)
+                MenuView(dayIndex: 1, date: "second", selectedLanguage: $selectedLanguage)
+                MenuView(dayIndex: 2, date: "third", selectedLanguage: $selectedLanguage)
+                MenuView(dayIndex: 3, date: "fourth", selectedLanguage: $selectedLanguage)
+                MenuView(dayIndex: 4, date: "fifth", selectedLanguage: $selectedLanguage)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .background(Color.backgroundColor)
@@ -76,10 +71,12 @@ struct ContentView: View {
             }
             .confirmationDialog("click language you wnat", isPresented: self.$showLanguage, titleVisibility: .visible) {
                 Button("한국어") {
-                    self.selectedLanguage = Language.Korean
+                    self.selectedLanguage.toggle()
+                    networkManager.getMenus(by: selectedLanguage)
                 }
                 Button("English") {
-                    self.selectedLanguage = Language.English
+                    self.selectedLanguage.toggle()
+                    networkManager.getMenus(by: selectedLanguage)
                 }
             }
             .confirmationDialog("위젯에 표시할 정보를 선택해주세요", isPresented: self.$showWidget, titleVisibility: .visible) {
@@ -118,16 +115,15 @@ struct ContentView: View {
         .onChange(of: scenePhase) {
             newPhase in
             if newPhase == .active {
-                networkManager.getMenus()
+                networkManager.getMenus(by: selectedLanguage)
             }
         }
         .onAppear {
-            networkManager.getMenus()
+            networkManager.getMenus(by: selectedLanguage)
         }
         .fullScreenCover(isPresented: self.$isFirstLaunching){
             OnBoardingTabView(isFirstLaunching: self.$isFirstLaunching)
                 .background(Color.backgroundColor)
         }
     }
-
 }

@@ -11,12 +11,25 @@ struct MenuView: View {
     
     // environment
     @EnvironmentObject var networkManager: NetworkManager
+    @Binding var language: Bool
     
     let dayIndex: Int
     let date: String
+
+    var mealName = NameManagerKor().mealName
+    let mealTime = TimeManger().timeMediumSize
     
-    let mealName = MealManager().mealName
-    let mealTime = MealManager().timeMediumSize
+    init(dayIndex: Int, date: String, selectedLanguage: Binding<Bool> = .constant(true)) {
+        _language = selectedLanguage
+        self.dayIndex = dayIndex
+        self.date = date
+        
+        if language {
+            self.mealName = NameManagerKor().mealName
+        } else {
+            self.mealName = NameManagerEng().mealName
+        }
+    }
     
     var body: some View {
         

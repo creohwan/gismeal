@@ -78,23 +78,24 @@ class NetworkManager: ObservableObject {
         return result
     }
     
-    func getMenus() -> Void {
-        getMenu(of: "first")
-        getMenu(of: "second")
-        getMenu(of: "third")
-        getMenu(of: "fourth")
-        getMenu(of: "fifth")
+    func getMenus(by language: Bool) -> Void {
+        getMenu(of: "first", by: language)
+        getMenu(of: "second", by: language)
+        getMenu(of: "third", by: language)
+        getMenu(of: "fourth", by: language)
+        getMenu(of: "fifth", by: language)
     }
     
-    func getMenu(of date: String) -> Void {
+    func getMenu(of date: String, by language: Bool) -> Void {
         
         let returnedDate = getDate(of: date)
         let year = returnedDate["year"]!
         let month = returnedDate["month"]!
         let day = returnedDate["day"]!
+        let languageInt = language ? 0 : 1
 
         //URLRequest
-        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/2/0")
+        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/2/\(languageInt)")
         else { fatalError("Missing URL") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
