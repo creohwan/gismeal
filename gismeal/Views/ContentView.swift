@@ -19,7 +19,7 @@ struct ContentView: View {
     
     @State private var selectedPlace = Place.SecondPlace
     @State private var selectedWidget = Widget.onTime
-    @State private var selectedLanguage: Bool = false
+    @State private var selectedLanguage: Bool = true
     
     //enum
     enum Place : Int {
