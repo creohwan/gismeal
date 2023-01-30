@@ -134,8 +134,8 @@
 			children = (
 				4395579D2982A77C0004FBAF /* MenuModel.swift */,
 				43002294298791E800A34EC8 /* NoMenuModel.swift */,
-				4395579E2982A77C0004FBAF /* NetworkManager.swift */,
 				4395579F2982A77C0004FBAF /* MealManager.swift */,
+				4395579E2982A77C0004FBAF /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";

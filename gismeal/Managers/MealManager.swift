@@ -38,8 +38,25 @@ struct TimeManager {
 }
 
 // 지스트
-struct MealManager {
+struct NameManagerKor {
+    let mealName = [
+        "breakfast" : "조식",
+        "lunch" : "중식(일반식)",
+        "lunch_corner" : "중식(특식)",
+        "dinner" : "석식"
+    ]
+}
 
+struct NameManagerEng {
+    let mealName = [
+        "breakfast" : "breakfast",
+        "lunch" : "lunch(basic)",
+        "lunch_corner" : "lunch(corner)",
+        "dinner" : "dinner"
+    ]
+}
+
+struct TimeManger {
     let timeMiniSize = [
         "breakfast" : "~ 09:30",
         "lunch" : "~ 13:30",
@@ -52,12 +69,5 @@ struct MealManager {
         "lunch" : "11:30 ~ 13:30",
         "lunch_corner" : "11:30 ~ 13:30",
         "dinner" : "17:00 ~ 18:30",
-    ]
-
-    let mealName = [
-        "breakfast" : "조식",
-        "lunch" : "중식(일반식)",
-        "lunch_corner" : "중식(특식)",
-        "dinner" : "석식"
     ]
 }
