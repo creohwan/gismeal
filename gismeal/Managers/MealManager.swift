@@ -49,10 +49,10 @@ struct NameManagerKor {
 
 struct NameManagerEng {
     let mealName = [
-        "breakfast" : "breakfast",
-        "lunch" : "lunch(basic)",
-        "lunch_corner" : "lunch(corner)",
-        "dinner" : "dinner"
+        "breakfast" : "Breakfast",
+        "lunch" : "Lunch(basic)",
+        "lunch_corner" : "Lunch(corner)",
+        "dinner" : "Dinner"
     ]
 }
 
