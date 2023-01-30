@@ -59,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		430022982987ADC400A34EC8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4395579D2982A77C0004FBAF /* MenuModel.swift */,
+				43002294298791E800A34EC8 /* NoMenuModel.swift */,
+				4395579E2982A77C0004FBAF /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		435D29452983860E002EFF32 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +122,7 @@
 			children = (
 				4346A368298696520080F154 /* Info.plist */,
 				435D294D29839A06002EFF32 /* Extension */,
+				430022982987ADC400A34EC8 /* Network */,
 				435D29452983860E002EFF32 /* Views */,
 				4395579C2982A77C0004FBAF /* Managers */,
 				4395578E2982A7600004FBAF /* gismealApp.swift */,
@@ -132,10 +143,7 @@
 		4395579C2982A77C0004FBAF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				4395579D2982A77C0004FBAF /* MenuModel.swift */,
-				43002294298791E800A34EC8 /* NoMenuModel.swift */,
 				4395579F2982A77C0004FBAF /* MealManager.swift */,
-				4395579E2982A77C0004FBAF /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
