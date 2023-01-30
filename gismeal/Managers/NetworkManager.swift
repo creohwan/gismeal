@@ -9,11 +9,11 @@ import SwiftUI
 
 class NetworkManager: ObservableObject {
     
-    @Published var firstDayMenus: Menu = Menu(id: 0, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var secondDayMenus: Menu = Menu(id: 1, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var thirdDayMenus: Menu = Menu(id: 2, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var fourthDayMenus: Menu = Menu(id: 3, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var fifthDayMenus: Menu = Menu(id: 4, breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var firstDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var secondDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var thirdDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var fourthDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var fifthDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
 
     var breakfast: String = ""
     var lunch: String = ""
@@ -72,7 +72,7 @@ class NetworkManager: ObservableObject {
         
         //Store UserDefault Data
         let result = ["year": year, "month": refinedMonth, "day": refinedDay, "weekday": refinedWeekDay]
-//        UserDefaults(suiteName: "group.com.lee.gismeal")?.set(result, forKey: "CURRENTDATE")
+        UserDefaults(suiteName: "group.com.lee.gismeal")?.set(result, forKey: "CURRENTDATE")
         
         //Return
         return result
@@ -119,7 +119,7 @@ class NetworkManager: ObservableObject {
                         switch date {
                         case "first":
                             self.firstDayMenus = decodedMenus
-//                            self.saveAtUserDefaults()
+                            self.saveAtUserDefaults()
                         case "second":
                             self.secondDayMenus = decodedMenus
                         case "third":
@@ -133,6 +133,28 @@ class NetworkManager: ObservableObject {
                         print("Error decoding: ", error)
                     }
                 }
+            } else if response.statusCode == 406 {
+                guard let data = data else { return }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedMenus = try JSONDecoder().decode(NoMenuModel.self, from: data)
+                        switch date {
+                        case "first":
+                            self.firstDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                            self.saveAtUserDefaults()
+                        case "second":
+                            self.secondDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                        case "third":
+                            self.thirdDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                        case "fourth":
+                            self.fourthDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                        default:
+                            self.fifthDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                        }
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
             }
         }
         dataTask.resume()
@@ -140,14 +162,10 @@ class NetworkManager: ObservableObject {
     
     // save data
     func saveAtUserDefaults() {
-
-        
-        //Store Datas
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(breakfast, forKey: "breakfast")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(lunch, forKey: "lunch")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(lunch_corner, forKey: "lunch_corner")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(dinner, forKey: "dinner")
-
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.breakfast, forKey: "breakfast")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.lunch, forKey: "lunch")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.lunch_corner, forKey: "lunch_corner")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.dinner, forKey: "dinner")
     }
     
 }
