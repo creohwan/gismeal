@@ -15,8 +15,8 @@ struct MenuView: View {
     let dayIndex: Int
     let date: String
     
-    let mealName = TimeManager().mealNameDict
-    let mealTime = TimeManager().scheduleMediumSize
+    let mealName = MealManager().mealName
+    let mealTime = MealManager().timeMediumSize
     
     var body: some View {
         
@@ -31,48 +31,24 @@ struct MenuView: View {
                          networkManager.fourthDayMenus,
                          networkManager.fifthDayMenus]
         
-        VStack {
-            Text("\(month)월 \(day)일 \(weekday)")
-                .font(.title)
-                .bold()
-                .padding(.vertical, 10)
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(menusList[dayIndex]) { menu in
-                        // CARD
-                        VStack(alignment: .leading) {
-                            // Title
-                            HStack {
-                                // Name
-                                Text(mealName[menu.type]!)
-                                    .bold()
-                                Spacer()
-                                // Time
-                                Text(mealTime[menu.type]!)
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color.black)
-                                    .padding(.vertical, 3)
-                                    .padding(.horizontal, 5)
-                                    .background(Color.backgroundColor)
-                                    .cornerRadius(20)
-                            }
-                            // Food
-                            VStack(alignment: .leading, spacing: 6) {
-                                ForEach(menu.foods) { food in
-                                    let check = food.isMain == true ? "*" : ""
-                                    Text(food.name_kor + check)
-                                        .font(.system(size: 15))
-                                        .foregroundColor(Color.black)
-                                }
-                            }
-                        }
-                        .frame(width: 300, alignment: .leading)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    }
-                }
+        let menu = menusList[dayIndex]
+        ScrollView {
+            VStack {
+                Text("\(month)월 \(day)일 \(weekday)")
+                    .font(.title)
+                    .bold()
+                    .padding(.vertical, 10)
+                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
+                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
+                CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: String(menu.lunch_corner.dropLast(1)))
+                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1)))
             }
+        }
+    }
+    
+    private func checkLunch(of menu: Menu) {
+        if menu.lunch_corner == "\n\n" {
+           
         }
     }
 }

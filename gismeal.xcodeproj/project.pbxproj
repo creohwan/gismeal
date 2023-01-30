@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4346A36A2986B1550080F154 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346A3692986B1550080F154 /* CardView.swift */; };
 		435D2948298386B4002EFF32 /* OnBoardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D2947298386B4002EFF32 /* OnBoardingTabView.swift */; };
 		435D294A298386DC002EFF32 /* OnBoardingBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D2949298386DC002EFF32 /* OnBoardingBasicView.swift */; };
 		435D294C298386F8002EFF32 /* OnBoardingLastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D294B298386F8002EFF32 /* OnBoardingLastView.swift */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4346A368298696520080F154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4346A3692986B1550080F154 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		435D2947298386B4002EFF32 /* OnBoardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingTabView.swift; sourceTree = "<group>"; };
 		435D2949298386DC002EFF32 /* OnBoardingBasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingBasicView.swift; sourceTree = "<group>"; };
 		435D294B298386F8002EFF32 /* OnBoardingLastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingLastView.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 				435D29462983861A002EFF32 /* OnVoardingViews */,
 				439557902982A7600004FBAF /* ContentView.swift */,
 				439557A32982A7820004FBAF /* MenuView.swift */,
+				4346A3692986B1550080F154 /* CardView.swift */,
 				43BD112F2984F32C005D7C4A /* SettingView.swift */,
 				43BD113129850B42005D7C4A /* DeveloperView.swift */,
 			);
@@ -101,6 +105,7 @@
 		4395578D2982A7600004FBAF /* gismeal */ = {
 			isa = PBXGroup;
 			children = (
+				4346A368298696520080F154 /* Info.plist */,
 				435D294D29839A06002EFF32 /* Extension */,
 				435D29452983860E002EFF32 /* Views */,
 				4395579C2982A77C0004FBAF /* Managers */,
@@ -206,6 +211,7 @@
 				439557A12982A77C0004FBAF /* NetworkManager.swift in Sources */,
 				435D294C298386F8002EFF32 /* OnBoardingLastView.swift in Sources */,
 				439557A02982A77C0004FBAF /* Model.swift in Sources */,
+				4346A36A2986B1550080F154 /* CardView.swift in Sources */,
 				435D294A298386DC002EFF32 /* OnBoardingBasicView.swift in Sources */,
 				435D2948298386B4002EFF32 /* OnBoardingTabView.swift in Sources */,
 				439557912982A7600004FBAF /* ContentView.swift in Sources */,
@@ -342,6 +348,7 @@
 				DEVELOPMENT_TEAM = UDCS6NMGF8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gismeal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -372,6 +379,7 @@
 				DEVELOPMENT_TEAM = UDCS6NMGF8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gismeal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

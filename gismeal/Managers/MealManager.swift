@@ -41,23 +41,23 @@ struct TimeManager {
 struct MealManager {
 
     let timeMiniSize = [
-        "BREAKFAST" : "~ 09:30",
-        "LUNCH_A" : "~ 13:30",
-        "LUNCH_B" : "~ 13:30",
-        "DINNER" : "~ 18:30",
+        "breakfast" : "~ 09:30",
+        "lunch" : "~ 13:30",
+        "lunch_corner" : "~ 13:30",
+        "dinner" : "~ 18:30",
     ]
 
     let timeMediumSize = [
-        "BREAKFAST" : "08:00 ~ 09:00",
-        "LUNCH_A" : "11:30 ~ 13:30",
-        "LUNCH_B" : "11:30 ~ 13:30",
-        "DINNER" : "17:00 ~ 18:30",
+        "breakfast" : "08:00 ~ 09:00",
+        "lunch" : "11:30 ~ 13:30",
+        "lunch_corner" : "11:30 ~ 13:30",
+        "dinner" : "17:00 ~ 18:30",
     ]
 
     let mealName = [
-        "BREAKFAST" : "조식",
-        "LUNCH_A" : "중식",
-        "LUNCH_B" : "중식(특식)",
-        "DINNER" : "석식"
+        "breakfast" : "조식",
+        "lunch" : "중식(일반식)",
+        "lunch_corner" : "중식(특식)",
+        "dinner" : "석식"
     ]
 }
