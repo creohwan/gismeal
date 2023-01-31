@@ -86,13 +86,13 @@ class NetworkManager: ObservableObject {
         getMenu(of: "fifth", by: language)
     }
     
-    func getMenu(of date: String, by language: Bool) -> Void {
+    func getMenu(of date: String, by language: Bool? = true) -> Void {
         
         let returnedDate = getDate(of: date)
         let year = returnedDate["year"]!
         let month = returnedDate["month"]!
         let day = returnedDate["day"]!
-        let languageInt = language ? 0 : 1
+        let languageInt = language == false ? 1 : 0
 
         //URLRequest
         guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/2/\(languageInt)")
