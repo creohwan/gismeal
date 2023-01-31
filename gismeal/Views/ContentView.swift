@@ -102,7 +102,6 @@ struct ContentView: View {
                 Button("시간에 맞추기") {
                     self.selectedWidget = Widget.onTime
                     updateSelectedWidget(meal: "onTime")
-                    print("safasdf")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
