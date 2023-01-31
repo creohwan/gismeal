@@ -20,11 +20,17 @@ struct myWidgetEntryView : View {
     
     let currentHour = Calendar.current.component(.hour, from: Date())
 
-//    @ViewBuilder
+    @ViewBuilder
     var body: some View {
         let selectedWidget = SELECTEDWIDGET == "onTime" ? returnMealOnTime() : SELECTEDWIDGET
         
-        WidgetSmallCardView(selectedWidget: selectedWidget)
+        switch family{
+        case .systemSmall:
+            WidgetSmallCardView(selectedWidget: selectedWidget)
+        default:
+            WidgetMediumCardView(selectedWidget: selectedWidget)
+        }
+    
     }
 }
 

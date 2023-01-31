@@ -30,7 +30,8 @@ struct WidgetSmallCardView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 8)
-        .padding(.vertical, 10)
+        .padding(.top, 14)
+        .padding(.bottom, 4)
         .background(Color.white)
         .onAppear{
             self.menu = ""
@@ -68,10 +69,7 @@ struct WidgetSmallCardView: View {
             } else {
                 Text("위젯 제거 후 다시 추가해주세요")
             }
-            
         }
-        
-        
-        
+        Spacer()
     }
 }
