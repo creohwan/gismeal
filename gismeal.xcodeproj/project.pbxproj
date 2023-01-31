@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		43002295298791E800A34EC8 /* NoMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43002294298791E800A34EC8 /* NoMenuModel.swift */; };
 		430022972987969900A34EC8 /* EmptyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430022962987969900A34EC8 /* EmptyCardView.swift */; };
+		430022D62987B7BA00A34EC8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430022D52987B7BA00A34EC8 /* UserDefaults+.swift */; };
 		4346A36A2986B1550080F154 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346A3692986B1550080F154 /* CardView.swift */; };
 		435D2948298386B4002EFF32 /* OnBoardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D2947298386B4002EFF32 /* OnBoardingTabView.swift */; };
 		435D294A298386DC002EFF32 /* OnBoardingBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D2949298386DC002EFF32 /* OnBoardingBasicView.swift */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		43002294298791E800A34EC8 /* NoMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMenuModel.swift; sourceTree = "<group>"; };
 		430022962987969900A34EC8 /* EmptyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardView.swift; sourceTree = "<group>"; };
+		430022D42987B69200A34EC8 /* gismeal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gismeal.entitlements; sourceTree = "<group>"; };
+		430022D52987B7BA00A34EC8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		4346A368298696520080F154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4346A3692986B1550080F154 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		435D2947298386B4002EFF32 /* OnBoardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingTabView.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				435D294E29839A10002EFF32 /* Color+.swift */,
+				430022D52987B7BA00A34EC8 /* UserDefaults+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -120,6 +124,7 @@
 		4395578D2982A7600004FBAF /* gismeal */ = {
 			isa = PBXGroup;
 			children = (
+				430022D42987B69200A34EC8 /* gismeal.entitlements */,
 				4346A368298696520080F154 /* Info.plist */,
 				435D294D29839A06002EFF32 /* Extension */,
 				430022982987ADC400A34EC8 /* Network */,
@@ -218,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				430022D62987B7BA00A34EC8 /* UserDefaults+.swift in Sources */,
 				439557A22982A77C0004FBAF /* MealManager.swift in Sources */,
 				435D294F29839A10002EFF32 /* Color+.swift in Sources */,
 				439557A42982A7820004FBAF /* MenuView.swift in Sources */,
@@ -358,6 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = gismeal/gismeal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"gismeal/Preview Content\"";
@@ -389,6 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = gismeal/gismeal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"gismeal/Preview Content\"";
