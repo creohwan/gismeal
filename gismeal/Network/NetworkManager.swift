@@ -72,8 +72,11 @@ class NetworkManager: ObservableObject {
         
         //Store UserDefault Data
         let result = ["year": year, "month": refinedMonth, "day": refinedDay, "weekday": refinedWeekDay]
-        UserDefaults(suiteName: "group.com.lee.gismeal")?.set(result, forKey: "CURRENTDATE")
         
+        if date == "first" {
+            UserDefaults(suiteName: "group.com.lee.gismeal")?.set(result, forKey: "CURRENTDATE")
+        }
+
         //Return
         return result
     }

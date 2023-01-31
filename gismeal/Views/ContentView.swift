@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ContentView: View {
     
@@ -28,10 +29,10 @@ struct ContentView: View {
     }
     
     enum Widget : Int {
-        case Breakfast
-        case Lunch_A
-        case Lunch_B
-        case Dinner
+        case breakfast
+        case lunch
+        case lunch_corner
+        case dinner
         case onTime
     }
     
@@ -71,31 +72,37 @@ struct ContentView: View {
             }
             .confirmationDialog("click language you wnat", isPresented: self.$showLanguage, titleVisibility: .visible) {
                 Button("한국어") {
-                    self.selectedLanguage.toggle()
+                    self.selectedLanguage = true
                     networkManager.getMenus(by: selectedLanguage)
                     UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Kor", forKey: "LANGUAGE")
                 }
                 Button("English") {
-                    self.selectedLanguage.toggle()
+                    self.selectedLanguage = false
                     networkManager.getMenus(by: selectedLanguage)
                     UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Eng", forKey: "LANGUAGE")
                 }
             }
             .confirmationDialog("위젯에 표시할 정보를 선택해주세요", isPresented: self.$showWidget, titleVisibility: .visible) {
                 Button("조식") {
-                    self.selectedWidget = Widget.Breakfast
-                }
-                Button("중식(일반식)") {
-                    self.selectedWidget = Widget.Lunch_A
+                    self.selectedWidget = Widget.breakfast
+                    updateSelectedWidget(meal: "breakfast")
                 }
                 Button("중식(특식)") {
-                    self.selectedWidget = Widget.Lunch_B
+                    self.selectedWidget = Widget.lunch_corner
+                    updateSelectedWidget(meal: "lunch_corner")
+                }
+                Button("중식(일반)") {
+                    self.selectedWidget = Widget.lunch
+                    updateSelectedWidget(meal: "lunch")
                 }
                 Button("석식") {
-                    self.selectedWidget = Widget.Dinner
+                    self.selectedWidget = Widget.dinner
+                    updateSelectedWidget(meal: "dinner")
                 }
                 Button("시간에 맞추기") {
                     self.selectedWidget = Widget.onTime
+                    updateSelectedWidget(meal: "onTime")
+                    print("safasdf")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -128,4 +135,9 @@ struct ContentView: View {
                 .background(Color.backgroundColor)
         }
     }
+}
+
+fileprivate func updateSelectedWidget(meal: String) {
+    UserDefaults(suiteName: "group.com.lee.gismeal")?.set(meal, forKey: "SELECTEDWIDGET")
+    WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
 }
