@@ -166,10 +166,14 @@ class NetworkManager: ObservableObject {
     
     // save data
     func saveAtUserDefaults() {
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.breakfast, forKey: "breakfast")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.lunch, forKey: "lunch")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.lunch_corner, forKey: "lunch_corner")
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.dinner, forKey: "dinner")
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneBreakfast(), forKey: "breakfast")
+
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneLunch(), forKey: "lunch")
+ 
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneLunchCorner(), forKey: "lunch_corner")
+
+        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneDinner(), forKey: "dinner")
+     
     }
     
 }
