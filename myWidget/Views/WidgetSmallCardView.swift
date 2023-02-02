@@ -21,7 +21,7 @@ struct WidgetSmallCardView: View {
     init(selectedWidget: String?) {
         self.selectedWidget = selectedWidget
         self.scheduleDict = TimeManger().timeMiniSize
-        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().mealName : NameManagerKor().mealName
+        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().mealName
     }
     
     var body: some View {
@@ -29,7 +29,7 @@ struct WidgetSmallCardView: View {
             menuViewBuilder()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 8)
+        .padding(.horizontal, 10)
         .padding(.top, 14)
         .padding(.bottom, 4)
         .background(Color.white)
@@ -46,7 +46,7 @@ struct WidgetSmallCardView: View {
             Group {
                 if selectedWidget != nil {
                     Text("\(mealNameDict[selectedWidget!]!)")
-                        .font(.system(size: 15))
+                        .font(.system(size: 14))
                         .bold()
                 } else if selectedWidget == nil {
                     Text("에러").bold()
@@ -55,10 +55,10 @@ struct WidgetSmallCardView: View {
             Spacer()
             Text(scheduleDict[selectedWidget ?? "lunch_corner"]!)
                 .font(.system(size:12))
-                .foregroundColor(Color.timeForegroundColor)
+                .foregroundColor(Color.black)
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
-                .background(Color.timeBackgroundColor)
+                .background(Color.backgroundColor)
                 .cornerRadius(10)
         }
         VStack(alignment: .leading, spacing: 2){

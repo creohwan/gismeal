@@ -13,4 +13,3 @@ struct NoMenuModel: Codable {
     var error: String
     var path: String
 }
-

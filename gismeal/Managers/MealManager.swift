@@ -8,10 +8,10 @@ import Foundation
 
 struct NameManagerKor {
     let mealName = [
-        "breakfast" : "조식",
-        "lunch" : "중식(일반)",
-        "lunch_corner" : "중식(특식)",
-        "dinner" : "석식"
+        "breakfast" : "아침",
+        "lunch" : "점심(일반)",
+        "lunch_corner" : "점심(특식)",
+        "dinner" : "저녁"
     ]
 }
 
@@ -22,7 +22,15 @@ struct NameManagerEng {
         "lunch_corner" : "Lunch(corner)",
         "dinner" : "Dinner"
     ]
+    
+    let widgetMealName = [
+        "breakfast" : "Breakfast",
+        "lunch" : "Lunch\n(basic)",
+        "lunch_corner" : "Lunch\n(corner)",
+        "dinner" : "Dinner"
+    ]
 }
+
 
 struct TimeManger {
     let timeMiniSize = [

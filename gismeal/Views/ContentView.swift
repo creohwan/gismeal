@@ -73,15 +73,20 @@ struct ContentView: View {
             .confirmationDialog("click language you wnat", isPresented: self.$showLanguage, titleVisibility: .visible) {
                 Button("한국어") {
                     self.selectedLanguage = true
-                    networkManager.getMenus(by: selectedLanguage)
                     UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Kor", forKey: "LANGUAGE")
-                    WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
+                    networkManager.getMenus(by: selectedLanguage)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                        WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
+                    }
+                    
                 }
                 Button("English") {
                     self.selectedLanguage = false
-                    networkManager.getMenus(by: selectedLanguage)
                     UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Eng", forKey: "LANGUAGE")
-                    WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
+                    networkManager.getMenus(by: selectedLanguage)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                        WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
+                    }
                 }
             }
             .confirmationDialog("위젯에 표시할 정보를 선택해주세요", isPresented: self.$showWidget, titleVisibility: .visible) {
@@ -109,7 +114,7 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Gismeal")
+                    Text("밥인지")
                         .font(.title2.bold())
                         .foregroundColor(Color.pointBlue)
                         .accessibilityAddTraits(.isHeader)
