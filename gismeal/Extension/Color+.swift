@@ -11,6 +11,7 @@ import SwiftUI
 extension Color {
     static let backgroundColor = Color("backgroundColor")
     static let pointBlue = Color("pointBlue")
+    static let pointRed = Color("pointRed")
     static let timeForegroundColor = Color("timeForegroundColor")
     static let timeBackgroundColor = Color("timeBackgroundColor")
 }

@@ -59,13 +59,13 @@ struct ContentView: View {
                     Button {
                         self.showLanguage = true
                     } label: {
-                        Text("Language").foregroundColor(Color.pointBlue)
+                        Text("Language").foregroundColor(Color.black)
                     }
                     Spacer()
                     Button {
                         self.showWidget = true
                     } label: {
-                        Text("위젯 설정").foregroundColor(Color.pointBlue)
+                        Text("위젯 설정").foregroundColor(Color.black)
                     }
                     Spacer()
                 }
@@ -75,7 +75,7 @@ struct ContentView: View {
                     self.selectedLanguage = true
                     UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Kor", forKey: "LANGUAGE")
                     networkManager.getMenus(by: selectedLanguage)
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
                     }
                     
@@ -84,7 +84,7 @@ struct ContentView: View {
                     self.selectedLanguage = false
                     UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Eng", forKey: "LANGUAGE")
                     networkManager.getMenus(by: selectedLanguage)
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
                     }
                 }
@@ -114,9 +114,9 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("밥인지")
+                    Text("밥 in GIST")
                         .font(.title2.bold())
-                        .foregroundColor(Color.pointBlue)
+                        .foregroundColor(Color.pointRed)
                         .accessibilityAddTraits(.isHeader)
                 }
             }
