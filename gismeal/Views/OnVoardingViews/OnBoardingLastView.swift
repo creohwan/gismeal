@@ -31,6 +31,7 @@ struct OnBoardingLastPageView: View {
                 .multilineTextAlignment(.center)
         
             Button {
+                upadateSetting()
                 isFirstLaunching.toggle()
             } label: {
                 Text("시작하기")
@@ -43,5 +44,10 @@ struct OnBoardingLastPageView: View {
             }
             .padding()
         }
+    }
+    
+    private func upadateSetting() {
+        UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Kor", forKey: "LANGUAGE")
+        UserDefaults(suiteName: "group.com.lee.gismeal")?.set("onTime", forKey: "SELECTEDWIDGET")
     }
 }

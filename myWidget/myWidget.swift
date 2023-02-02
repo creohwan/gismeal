@@ -36,19 +36,19 @@ struct Provider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
         
-//        Task {
-//            let entry = SimpleEntry(date: date)
-//
-//            do {
-//                NetworkManager.shared.getMenu(of: "first")
-//
-//                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
-//                let timeline = Timeline(entries: [entry], policy: .after(nextUpdate!))
-//                completion(timeline)
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }
+        Task {
+            let entry = SimpleEntry(date: date)
+
+            do {
+                NetworkManager.shared.getMenu(of: "first")
+                WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                let timeline = Timeline(entries: [entry], policy: .after(nextUpdate!))
+                completion(timeline)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
         
         
     }
