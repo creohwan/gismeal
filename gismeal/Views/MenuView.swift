@@ -65,7 +65,7 @@ struct MenuView: View {
     }
     
     private func isLunchConerEmpty(of menu: Menu) -> AnyView {
-        if menu.lunch_corner == "\n\n" {
+        if menu.lunch_corner == "\n" {
             return AnyView(VStack {
                 CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
                 CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
