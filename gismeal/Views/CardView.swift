@@ -31,14 +31,14 @@ struct CardView: View {
                         .padding(.vertical, 3)
                         .padding(.horizontal, 5)
                         .background(Color.backgroundColor)
-                        .cornerRadius(20)
+                        .cornerRadius(12)
                 }
                 // Food
                 VStack(alignment: .leading, spacing: 6) {
                     Text(mealMenu)
                 }
             }
-            .frame(width: 300, alignment: .leading)
+            .frame(width: 290, alignment: .leading)
             .padding()
             .background(Color.white)
             .cornerRadius(10)

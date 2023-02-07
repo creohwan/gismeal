@@ -18,6 +18,8 @@ struct MenuView: View {
 
     var mealName = NameManagerKor().mealName
     let mealTime = TimeManger().timeMediumSize
+    // TODO: - 학생 식당 이름 변경
+    var mealPlace = "2학생식당"
     
     init(dayIndex: Int, date: String, selectedLanguage: Binding<Bool> = .constant(true)) {
         _language = selectedLanguage
@@ -26,8 +28,10 @@ struct MenuView: View {
         
         if language {
             self.mealName = NameManagerKor().mealName
+            self.mealPlace = "2학생식당"
         } else {
             self.mealName = NameManagerEng().mealName
+            self.mealPlace = "2nd Student Restaurant"
         }
     }
     
@@ -45,16 +49,23 @@ struct MenuView: View {
                          networkManager.fifthDayMenus]
         
         let menu = menusList[dayIndex]
-
-        ScrollView(showsIndicators: false) {
-            VStack {
-                Text("\(month)월 \(day)일 \(weekday)")
-                    .font(.title)
-                    .bold()
-                    .padding(.vertical, 10)
-                checkMenu(of: menu)
+        VStack {
+            Text("\(month)월 \(day)일 \(weekday)")
+                .font(.title)
+                .bold()
+                .padding(.vertical, 5)
+            // TODO: - 학생회관 추가시 수정 필요
+            Text(mealPlace)
+                .font(.title3)
+                .bold()
+                .padding(.vertical, 2)
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    checkMenu(of: menu)
+                }
             }
         }
+
     }
     
     private func checkMenu(of menu: Menu) -> AnyView {
@@ -67,16 +78,16 @@ struct MenuView: View {
     private func isLunchConerEmpty(of menu: Menu) -> AnyView {
         if menu.lunch_corner == "\n" || menu.lunch_corner == ""  {
             return AnyView(VStack {
-                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
-                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
-                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1)))
+                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1))).padding(.vertical,1)
+                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1))).padding(.vertical,1)
+                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1))).padding(.vertical,1)
             })
         } else {
             return AnyView(VStack {
-                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1)))
-                CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: String(menu.lunch_corner.dropLast(1)))
-                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1)))
-                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1)))
+                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1))).padding(.vertical,1)
+                CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: String(menu.lunch_corner.dropLast(1))).padding(.vertical,1)
+                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1))).padding(.vertical,1)
+                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1))).padding(.vertical,1)
             })
         }
     }
