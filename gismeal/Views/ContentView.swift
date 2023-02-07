@@ -94,7 +94,7 @@ struct ContentView: View {
                     self.selectedWidget = Widget.breakfast
                     updateSelectedWidget(meal: "breakfast")
                 }
-                Button("중식(특식)") {
+                Button("중식(코너)") {
                     self.selectedWidget = Widget.lunch_corner
                     updateSelectedWidget(meal: "lunch_corner")
                 }
