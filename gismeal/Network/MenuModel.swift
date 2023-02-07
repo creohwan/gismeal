@@ -23,6 +23,9 @@ struct Menu: Codable {
             if let endIndex = menu.firstIndex(of: "(") {
                 let fixedText = menu[menu.startIndex..<endIndex]
                 returnedArray.append(String(fixedText))
+            } else if let endIndex = menu.firstIndex(of: "[") {
+                let fixedText = menu[menu.startIndex..<endIndex]
+                returnedArray.append(String(fixedText))
             } else {
                 returnedArray.append(String(menu))
             }
