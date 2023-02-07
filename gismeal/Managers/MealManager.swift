@@ -10,7 +10,7 @@ struct NameManagerKor {
     let mealName = [
         "breakfast" : "아침",
         "lunch" : "점심(일반)",
-        "lunch_corner" : "점심(특식)",
+        "lunch_corner" : "점심(코너)",
         "dinner" : "저녁"
     ]
 }
