@@ -90,19 +90,19 @@ struct ContentView: View {
                 }
             }
             .confirmationDialog("위젯에 표시할 정보를 선택해주세요", isPresented: self.$showWidget, titleVisibility: .visible) {
-                Button("조식") {
+                Button("오늘 아침") {
                     self.selectedWidget = Widget.breakfast
                     updateSelectedWidget(meal: "breakfast")
                 }
-                Button("중식(코너)") {
+                Button("오늘 점심(코너)") {
                     self.selectedWidget = Widget.lunch_corner
                     updateSelectedWidget(meal: "lunch_corner")
                 }
-                Button("중식(일반)") {
+                Button("오늘 점심(일반)") {
                     self.selectedWidget = Widget.lunch
                     updateSelectedWidget(meal: "lunch")
                 }
-                Button("석식") {
+                Button("오늘 저녁") {
                     self.selectedWidget = Widget.dinner
                     updateSelectedWidget(meal: "dinner")
                 }
@@ -121,7 +121,7 @@ struct ContentView: View {
                 }
             }
 //            .navigationBarItems(
-//                trailing: NavigationLink(destination: SettingView()) {
+//                trailing: NavigationLink(destination: DeveloperView()) {
 //                    Image(systemName: "gearshape").resizable()
 //                        .foregroundColor(Color.pointBlue)
 //                }

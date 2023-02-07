@@ -69,4 +69,11 @@ struct Menu: Codable {
     func oneDinner() -> String {
         return setupOneSentence(of: parsingDinner())
     }
+    
+    mutating func setupAllMenu() {
+        breakfast = oneBreakfast()
+        lunch_corner = oneLunchCorner()
+        lunch = oneLunch()
+        dinner = oneDinner()
+    }
 }
