@@ -50,6 +50,7 @@
 		439557A42982A7820004FBAF /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439557A32982A7820004FBAF /* MenuView.swift */; };
 		43BD11302984F32C005D7C4A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BD112F2984F32C005D7C4A /* SettingView.swift */; };
 		43BD113229850B42005D7C4A /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BD113129850B42005D7C4A /* DeveloperView.swift */; };
+		43C3FB3129926BDE00275E15 /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BD113129850B42005D7C4A /* DeveloperView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -368,6 +369,7 @@
 				430FFAA82988DE7E00BEC451 /* OnBoardingBasicView.swift in Sources */,
 				430FFAA42988DE5900BEC451 /* ContentView.swift in Sources */,
 				430FFAA12988DD7F00BEC451 /* Color+.swift in Sources */,
+				43C3FB3129926BDE00275E15 /* DeveloperView.swift in Sources */,
 				430FFAA22988DD8100BEC451 /* UserDefaults+.swift in Sources */,
 				430FFAA92988DE8100BEC451 /* OnBoardingLastView.swift in Sources */,
 				430FFAAD2988F58100BEC451 /* WidgetMediumCardView.swift in Sources */,

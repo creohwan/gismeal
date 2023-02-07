@@ -17,11 +17,16 @@ struct WidgetSmallCardView: View {
     
     var scheduleDict = TimeManger().timeMiniSize
     var mealNameDict = NameManagerKor().mealName
+    // TODO: - 추후 학생식당 추가시 수정 필요함
+    var selectedPlace: Int = 2
+    var selectedPlaceName: String = "2학"
     
     init(selectedWidget: String?) {
         self.selectedWidget = selectedWidget
         self.scheduleDict = TimeManger().timeMiniSize
-        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().mealName
+        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().widgetMealName
+        // TODO: - 추후 학생식당 추가시 수정 필요함
+        self.selectedPlaceName = selectedPlace == 2 ? " 2학 " : " 1학 "
     }
     
     var body: some View {
@@ -29,7 +34,7 @@ struct WidgetSmallCardView: View {
             menuViewBuilder()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 12)
         .padding(.top, 14)
         .padding(.bottom, 4)
         .background(Color.white)
@@ -53,11 +58,13 @@ struct WidgetSmallCardView: View {
                 }
             }
             Spacer()
-            Text(scheduleDict[selectedWidget ?? "lunch_corner"]!)
+//            Text(scheduleDict[selectedWidget ?? "lunch_corner"]!)
+            // TODO: - 추후 학생식당 선택시 로직 필요함
+            Text(selectedPlaceName)
                 .font(.system(size:12))
                 .foregroundColor(Color.black)
                 .padding(.vertical, 3)
-                .padding(.horizontal, 10)
+                .padding(.horizontal, 7)
                 .background(Color.backgroundColor)
                 .cornerRadius(10)
         }

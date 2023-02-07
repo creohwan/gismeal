@@ -13,6 +13,13 @@ struct NameManagerKor {
         "lunch_corner" : "점심(코너)",
         "dinner" : "저녁"
     ]
+    
+    let widgetMealName = [
+        "breakfast" : "오늘 아침",
+        "lunch" : "오늘 점심(일반)",
+        "lunch_corner" : "오늘 점심(코너)",
+        "dinner" : "오늘 저녁"
+    ]
 }
 
 struct NameManagerEng {
