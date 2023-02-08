@@ -34,7 +34,7 @@ struct WidgetSmallCardView: View {
             menuViewBuilder()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 14)
         .padding(.top, 14)
         .padding(.bottom, 4)
         .background(Color.white)
@@ -51,8 +51,10 @@ struct WidgetSmallCardView: View {
             Group {
                 if selectedWidget != nil {
                     Text("\(mealNameDict[selectedWidget!]!)")
-                        .font(.system(size: 14))
+                        .font(.system(size: 15))
+                        .foregroundColor(Color.black)
                         .bold()
+                        .multilineTextAlignment(.center)
                 } else if selectedWidget == nil {
                     Text("에러").bold()
                 }
@@ -64,10 +66,11 @@ struct WidgetSmallCardView: View {
                 .font(.system(size:12))
                 .foregroundColor(Color.black)
                 .padding(.vertical, 3)
-                .padding(.horizontal, 7)
+                .padding(.horizontal, 10)
                 .background(Color.backgroundColor)
+                .bold()
                 .cornerRadius(10)
-        }
+        }.padding(.bottom, 2)
         VStack(alignment: .leading, spacing: 2){
             if menu != "" {
                 Text(menu)

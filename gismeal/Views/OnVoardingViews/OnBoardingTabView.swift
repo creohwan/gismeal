@@ -21,7 +21,7 @@ struct OnBoardingTabView: View {
             OnBoardingBasicView(
                 imageName: "iphone.homebutton",
                 title: "위젯",
-                subtitle: "앱에 들어오지 않고도\n식당 메뉴를 확인 하실수 있습니다."
+                subtitle: "앱에 들어오지 않아도\n식당 메뉴를 확인하실 수 있습니다."
             )
             OnBoardingLastPageView(
                 imageName: "gear",
