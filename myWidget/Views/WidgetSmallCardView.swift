@@ -13,7 +13,7 @@ struct WidgetSmallCardView: View {
     //Define
     @State var menu: String = ""
     
-    let selectedWidget: String?
+    var selectedWidget: String?
     
     var scheduleDict = TimeManger().timeMiniSize
     var mealNameDict = NameManagerKor().mealName
@@ -23,6 +23,10 @@ struct WidgetSmallCardView: View {
     
     init(selectedWidget: String?) {
         self.selectedWidget = selectedWidget
+        if self.selectedWidget == "lunch_corner" {
+            let newSelectedWidget = checkLunchCorner(menu: self.selectedWidget!)
+            self.selectedWidget = newSelectedWidget
+        }
         self.scheduleDict = TimeManger().timeMiniSize
         self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().widgetMealName
         // TODO: - 추후 학생식당 추가시 수정 필요함
@@ -34,7 +38,7 @@ struct WidgetSmallCardView: View {
             menuViewBuilder()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 14)
         .padding(.top, 14)
         .padding(.bottom, 4)
         .background(Color.white)
@@ -51,8 +55,10 @@ struct WidgetSmallCardView: View {
             Group {
                 if selectedWidget != nil {
                     Text("\(mealNameDict[selectedWidget!]!)")
-                        .font(.system(size: 14))
+                        .font(.system(size: 15))
+                        .foregroundColor(Color.black)
                         .bold()
+                        .multilineTextAlignment(.center)
                 } else if selectedWidget == nil {
                     Text("에러").bold()
                 }
@@ -64,19 +70,33 @@ struct WidgetSmallCardView: View {
                 .font(.system(size:12))
                 .foregroundColor(Color.black)
                 .padding(.vertical, 3)
-                .padding(.horizontal, 7)
+                .padding(.horizontal, 10)
                 .background(Color.backgroundColor)
+                .bold()
                 .cornerRadius(10)
-        }
+        }.padding(.bottom, 2)
         VStack(alignment: .leading, spacing: 2){
             if menu != "" {
                 Text(menu)
                     .font(.system(size: 14))
                     .foregroundColor(Color.black)
             } else {
-                Text("위젯 제거 후 다시 추가해주세요")
+                Text("위젯 재설정 이후,\n위젯을 다시 추가해주세요")
+                    .font(.system(size: 14))
+                    .foregroundColor(Color.black)
             }
         }
         Spacer()
+    }
+    
+    func checkLunchCorner(menu: String) -> String {
+        guard let lunchCornerMenu = UserDefaults.shared.value(forKey: self.selectedWidget!) as? String
+        else { return "lunch" }
+            
+        if lunchCornerMenu == "\n" || lunchCornerMenu == ""  {
+            return "lunch"
+        } else {
+            return "lunch_corner"
+        }
     }
 }
