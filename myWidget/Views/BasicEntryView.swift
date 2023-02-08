@@ -44,7 +44,7 @@ fileprivate func returnMealOnTime() -> String{
     else if 9 <= currenHour && currenHour < 13 {
         result = "lunch_corner"
     }
-    else if 14 <= currenHour && currenHour <= 23{
+    else if 13 <= currenHour && currenHour < 24{
         result = "dinner"
     }
     return result
