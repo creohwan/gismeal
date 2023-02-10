@@ -22,6 +22,9 @@ struct ContentView: View {
     @State private var selectedWidget = Widget.onTime
     @State private var selectedLanguage: Bool = true
     
+    @State var selectedRestaurantNum = 0
+    @State var selectedDate = Date()
+    
     //enum
     enum Place : Int {
         case firstPlace
@@ -36,22 +39,28 @@ struct ContentView: View {
         case onTime
     }
     
-    init() {
-        UIPageControl.appearance().currentPageIndicatorTintColor = .gray
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
-    }
+//    init() {
+//        UIPageControl.appearance().currentPageIndicatorTintColor = .gray
+//        UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+//    }
     
     // body
     var body: some View {
         NavigationView {
-            TabView {
-                MenuView(dayIndex: 0, date: "first", selectedLanguage: $selectedLanguage)
-                MenuView(dayIndex: 1, date: "second", selectedLanguage: $selectedLanguage)
-                MenuView(dayIndex: 2, date: "third", selectedLanguage: $selectedLanguage)
-                MenuView(dayIndex: 3, date: "fourth", selectedLanguage: $selectedLanguage)
-                MenuView(dayIndex: 4, date: "fifth", selectedLanguage: $selectedLanguage)
+            VStack {
+                TabView {
+                    MenuView(dayIndex: 0, date: "first", selectedLanguage: $selectedLanguage)
+                    MenuView(dayIndex: 1, date: "second", selectedLanguage: $selectedLanguage)
+                    MenuView(dayIndex: 2, date: "third", selectedLanguage: $selectedLanguage)
+                    MenuView(dayIndex: 3, date: "fourth", selectedLanguage: $selectedLanguage)
+                    MenuView(dayIndex: 4, date: "fifth", selectedLanguage: $selectedLanguage)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                RestaurantSegmentView(selectedRestaurant: $selectedRestaurantNum)
+                    .padding(.bottom, 16)
+                CalendarView(selectedDate: $selectedDate)
+                    .padding(.bottom, 18)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .background(Color.backgroundColor)
             .toolbar{
                 ToolbarItemGroup(placement: ToolbarItemPlacement.bottomBar){

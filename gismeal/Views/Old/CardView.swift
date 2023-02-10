@@ -38,7 +38,7 @@ struct CardView: View {
                     Text(mealMenu)
                 }
             }
-            .frame(width: 290, alignment: .leading)
+            .frame(width: 300, alignment: .leading)
             .padding()
             .background(Color.white)
             .cornerRadius(10)

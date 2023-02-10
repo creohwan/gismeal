@@ -40,7 +40,7 @@ struct Provider: TimelineProvider {
             let entry = SimpleEntry(date: date)
 
             do {
-                NetworkManager.shared.getMenu(of: "first")
+                NetworkManager.shared.getMenu(date: "first", restaurant: 2)
                 WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate!))

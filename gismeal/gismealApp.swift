@@ -13,8 +13,11 @@ struct gismealApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+//                .environmentObject(networkManager)
+            MainView()
                 .environmentObject(networkManager)
+            
         }
     }
 }

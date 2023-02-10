@@ -82,23 +82,27 @@ class NetworkManager: ObservableObject {
     }
     
     func getMenus(by language: Bool) -> Void {
-        getMenu(of: "first", by: language)
-        getMenu(of: "second", by: language)
-        getMenu(of: "third", by: language)
-        getMenu(of: "fourth", by: language)
-        getMenu(of: "fifth", by: language)
+        
+        // TODO: 1학 메뉴 받아오는 거 추가해야 함
+        
+        getMenu(date: "first", restaurant: 2, language: language)
+        getMenu(date: "second", restaurant: 2,language: language)
+        getMenu(date: "third", restaurant: 2, language: language)
+        getMenu(date: "fourth", restaurant: 2, language: language)
+        getMenu(date: "fifth", restaurant: 2, language: language)
     }
     
-    func getMenu(of date: String, by language: Bool? = true) -> Void {
+    func getMenu(date: String, restaurant: Int ,language: Bool? = true) -> Void {
         
         let returnedDate = getDate(of: date)
         let year = returnedDate["year"]!
         let month = returnedDate["month"]!
         let day = returnedDate["day"]!
         let languageInt = language == false ? 1 : 0
+        
 
         //URLRequest
-        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/2/\(languageInt)")
+        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/\(restaurant)/\(languageInt)")
         else { fatalError("Missing URL") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
