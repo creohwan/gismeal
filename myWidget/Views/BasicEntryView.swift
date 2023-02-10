@@ -14,7 +14,7 @@ struct myWidgetEntryView : View {
     
     var entry: Provider.Entry
     
-    let CURRENTDATE = UserDefaults.shared.value(forKey: "CURRENTDATE") as? String
+//    let CURRENTDATE = UserDefaults.shared.value(forKey: "CURRENTDATE") as? String
     
     var SELECTEDWIDGET = UserDefaults.shared.value(forKey: "SELECTEDWIDGET") as? String
     

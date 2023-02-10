@@ -29,7 +29,7 @@ struct RestaurantSegmentView: View {
                     Text(pickerIndex[restaurantNum])
                         .font(.system(size: 18))
                         .fontWeight(selectedRestaurant == restaurantNum ? .bold : .medium)
-                        .foregroundColor(selectedRestaurant == restaurantNum ? .white : .timeForegroundColor)
+                        .foregroundColor(selectedRestaurant == restaurantNum ? .white : .foregroundColor)
                 )
             }
             

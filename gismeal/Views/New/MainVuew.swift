@@ -25,22 +25,25 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                HeadView(selectedRestaurant: $selectedRestaurant)
-                
                 RestaurantSegmentView(selectedRestaurant: $selectedRestaurant)
                     .padding(.top, 12)
                     .padding(.bottom, 12)
                 
                 TabView (selection: $selectedRestaurant) {
-                    MealView(selectedDate: $selectedDate, selectedRestaurant: 0).tag(0)
-                    MealView(selectedDate: $selectedDate, selectedRestaurant: 1).tag(1)
+                    MealView(selectedDate: $selectedDate, selectedRestaurant: 1).tag(0)
+                    MealView(selectedDate: $selectedDate, selectedRestaurant: 2).tag(1)
                 }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .padding(.bottom, 12)
+
         
-                CalendarView(selectedDate: $selectedDate)
-                    .padding(.horizontal, 30)
-            }
+          
+//                CalendarView(selectedDate: $selectedDate)
+            }.overlay(
+                CalendarView(selectedDate: $selectedDate), alignment: .bottom
+            )
+            .ignoresSafeArea(edges: .bottom)
+        
+            .frame(maxHeight: .infinity)
             .background(Color.backgroundColor)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

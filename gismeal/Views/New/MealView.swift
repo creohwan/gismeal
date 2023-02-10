@@ -18,25 +18,34 @@ struct MealView: View {
     var mealName = NameManagerKor().mealName
     let mealTime = TimeManger().timeMediumSize
     
-  
-
+    func setupRestaurantMenu(selectedRestaurant: Int) -> [Menu] {
+        if selectedRestaurant == 1 {
+            return [networkManager.R1Day1Menus,
+                    networkManager.R1Day2Menus,
+                    networkManager.R1Day3Menus,
+                    networkManager.R1Day4Menus,
+                    networkManager.R1Day5Menus]
+        } else {
+            return [networkManager.R2Day1Menus,
+                    networkManager.R2Day2Menus,
+                    networkManager.R2Day3Menus,
+                    networkManager.R2Day4Menus,
+                    networkManager.R2Day5Menus]
+        }
+    }
+    
     var body: some View {
         
         let selectedDayIndex = selectedDate.getDayIndex()
-        
-        let menusList = [networkManager.firstDayMenus,
-                         networkManager.secondDayMenus,
-                         networkManager.thirdDayMenus,
-                         networkManager.fourthDayMenus,
-                         networkManager.fifthDayMenus]
-        
+        let menusList = setupRestaurantMenu(selectedRestaurant: selectedRestaurant)
         let menu = menusList[selectedDayIndex]
-      
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    checkMenu(of: menu)
-                }
+        
+        ScrollView(showsIndicators: false) {
+            VStack {
+                checkMenu(of: menu)
+                Spacer().frame(height: 90)
             }
+        }
     }
     
     private func checkMenu(of menu: Menu) -> AnyView {

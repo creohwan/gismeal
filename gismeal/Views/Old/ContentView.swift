@@ -49,11 +49,11 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 TabView {
-                    MenuView(dayIndex: 0, date: "first", selectedLanguage: $selectedLanguage)
-                    MenuView(dayIndex: 1, date: "second", selectedLanguage: $selectedLanguage)
-                    MenuView(dayIndex: 2, date: "third", selectedLanguage: $selectedLanguage)
-                    MenuView(dayIndex: 3, date: "fourth", selectedLanguage: $selectedLanguage)
-                    MenuView(dayIndex: 4, date: "fifth", selectedLanguage: $selectedLanguage)
+//                    MenuView(dayIndex: 0, date: "first", selectedLanguage: $selectedLanguage)
+//                    MenuView(dayIndex: 1, date: "second", selectedLanguage: $selectedLanguage)
+//                    MenuView(dayIndex: 2, date: "third", selectedLanguage: $selectedLanguage)
+//                    MenuView(dayIndex: 3, date: "fourth", selectedLanguage: $selectedLanguage)
+//                    MenuView(dayIndex: 4, date: "fifth", selectedLanguage: $selectedLanguage)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 RestaurantSegmentView(selectedRestaurant: $selectedRestaurantNum)

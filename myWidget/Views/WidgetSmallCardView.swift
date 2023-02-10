@@ -68,10 +68,10 @@ struct WidgetSmallCardView: View {
             // TODO: - 추후 학생식당 선택시 로직 필요함
             Text(selectedPlaceName)
                 .font(.system(size:12))
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.white)
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
-                .background(Color.backgroundColor)
+                .background(Color.pointRed)
                 .bold()
                 .cornerRadius(10)
         }.padding(.bottom, 2)
