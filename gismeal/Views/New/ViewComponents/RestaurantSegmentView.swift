@@ -32,11 +32,10 @@ struct RestaurantSegmentView: View {
                         .foregroundColor(selectedRestaurant == restaurantNum ? .white : .foregroundColor)
                 )
             }
-            
         }
-        .frame(width: 298, height: 39)
+        .frame(width: 280, height: 40)
         .cornerRadius(30)
-        .shadow(color: .black, radius: 0.1, x: .zero, y: .zero)
+        .shadow(color: Color.black.opacity(0.3), radius: 2)
     }
 }
 

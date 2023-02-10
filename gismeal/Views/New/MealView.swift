@@ -35,7 +35,6 @@ struct MealView: View {
     }
     
     var body: some View {
-        
         let selectedDayIndex = selectedDate.getDayIndex()
         let menusList = setupRestaurantMenu(selectedRestaurant: selectedRestaurant)
         let menu = menusList[selectedDayIndex]

@@ -20,7 +20,6 @@ struct MainView: View {
     @State var selectedRestaurant = 0
     @State var selectedDate = Date()
 
-    
     // body
     var body: some View {
         NavigationView {
@@ -32,17 +31,11 @@ struct MainView: View {
                 TabView (selection: $selectedRestaurant) {
                     MealView(selectedDate: $selectedDate, selectedRestaurant: 1).tag(0)
                     MealView(selectedDate: $selectedDate, selectedRestaurant: 2).tag(1)
-                }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-
-        
-          
-//                CalendarView(selectedDate: $selectedDate)
+                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }.overlay(
                 CalendarView(selectedDate: $selectedDate), alignment: .bottom
             )
             .ignoresSafeArea(edges: .bottom)
-        
             .frame(maxHeight: .infinity)
             .background(Color.backgroundColor)
             .navigationBarTitleDisplayMode(.inline)
