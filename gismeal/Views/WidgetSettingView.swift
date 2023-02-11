@@ -10,6 +10,8 @@ import WidgetKit
 
 struct WidgetSettingView: View {
     
+    @EnvironmentObject var networkManager: NetworkManager
+    
     @State var selectedRestaurant: Int = 1
     @State var selectedMenu: Int = 5
     
@@ -24,7 +26,7 @@ struct WidgetSettingView: View {
                 Spacer().frame(height: 30)
                 
                 HStack {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 50)
                         .foregroundColor(Color.foregroundColor)
                         .frame(width: 100, height: 50)
                         .overlay(
@@ -35,7 +37,7 @@ struct WidgetSettingView: View {
                     
                     Spacer().frame(width: 30)
                     VStack {
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedRestaurant == 1 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -44,14 +46,14 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedRestaurant == 1 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
                                 self.selectedRestaurant = 1
                                 updateSelectedRestaurant(restaurant: 1)
                             }
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedRestaurant == 2 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -60,7 +62,7 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedRestaurant == 2 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
@@ -73,7 +75,7 @@ struct WidgetSettingView: View {
                 Spacer().frame(height: 50)
                 
                 HStack {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 50)
                         .foregroundColor(Color.foregroundColor)
                         .frame(width: 100, height: 50)
                         .overlay(
@@ -84,7 +86,7 @@ struct WidgetSettingView: View {
                     
                     Spacer().frame(width: 30)
                     VStack {
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedMenu == 1 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -93,14 +95,14 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedMenu == 1 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
                                 self.selectedMenu = 1
                                 updateSelectedWidget(meal: "breakfast")
                             }
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedMenu == 2 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -109,14 +111,14 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedMenu == 2 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
                                 self.selectedMenu = 2
                                 updateSelectedWidget(meal: "lunch")
                             }
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedMenu == 3 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -125,14 +127,14 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedMenu == 3 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
                                 self.selectedMenu = 3
                                 updateSelectedWidget(meal: "lunch_corner")
                             }
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedMenu == 4 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -141,14 +143,14 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedMenu == 4 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
                                 self.selectedMenu = 4
                                 updateSelectedWidget(meal: "dinner")
                             }
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 50)
                             .foregroundColor(self.selectedMenu == 5 ? .pointRed : .white)
                             .frame(width: 130, height: 50)
                             .overlay(
@@ -157,7 +159,7 @@ struct WidgetSettingView: View {
                                     .fontWeight(self.selectedMenu == 5 ? .semibold : .regular)
                             )
                             .overlay(
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.poinrtLightGray, lineWidth: 1)
                             )
                             .onTapGesture {
@@ -166,6 +168,7 @@ struct WidgetSettingView: View {
                             }
                     }
                 }
+                Spacer()
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -183,10 +186,4 @@ fileprivate func updateSelectedWidget(meal: String) {
 fileprivate func updateSelectedRestaurant(restaurant: Int) {
     UserDefaults(suiteName: "group.com.lee.gismeal")?.set(restaurant, forKey: "restaurant")
     WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
-}
-
-struct WidgetSettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        WidgetSettingView()
-    }
 }

@@ -77,7 +77,6 @@ class NetworkManager: ObservableObject {
                     do {
                         // Decode
                         let decodedMenus = try JSONDecoder().decode(MenuForm.self, from: data)
-                        
                         if restaurant == 1 {
                             switch dayIndex {
                             case 0:

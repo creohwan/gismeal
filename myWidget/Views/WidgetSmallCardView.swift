@@ -42,12 +42,15 @@ struct WidgetSmallCardView: View {
         .background(Color.white)
         .onAppear{
             self.menu = ""
-            print("------------------------")
-            print("\(selectedRestaurant)\(self.selectedWidget!)")
-            guard let menu = UserDefaults.shared.value(forKey: "\(self.selectedRestaurant)\(self.selectedWidget!)") as? String
-            else { return }
-            print(menu)
-            self.menu = menu
+            
+            let today = Date()
+            if (today.getDayOfWeekShort() == "토" || today.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
+                self.menu = "1학생식당은 평일에만 운영됩니다"
+            } else {
+                guard let menu = UserDefaults.shared.value(forKey: "\(self.selectedRestaurant!)\(self.selectedWidget!)") as? String
+                else { return }
+                self.menu = menu
+            }
         }
     }
     
