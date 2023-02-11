@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MealView: View {
+struct MenuView: View {
     
     // environment
     @EnvironmentObject var networkManager: NetworkManager

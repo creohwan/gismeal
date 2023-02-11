@@ -33,8 +33,8 @@ struct MainView: View {
                     .padding(.bottom, 12)
                 
                 TabView (selection: $selectedRestaurant) {
-                    MealView(selectedDate: $selectedDate, selectedRestaurant: 1).tag(0)
-                    MealView(selectedDate: $selectedDate, selectedRestaurant: 2).tag(1)
+                    MenuView(selectedDate: $selectedDate, selectedRestaurant: 1).tag(0)
+                    MenuView(selectedDate: $selectedDate, selectedRestaurant: 2).tag(1)
                 }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }.overlay(
                 CalendarView(selectedDate: $selectedDate), alignment: .bottom

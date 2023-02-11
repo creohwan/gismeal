@@ -45,7 +45,7 @@ struct CalendarView: View {
                                         .foregroundColor(date.getDate() == Date().getDate() ? .pointRed : .foregroundColor)
                                 }
                                 .padding(8)
-                                .background(date.getDate() == selectedDate.getDate() ? Color.backgroundColor : .clear)
+                                .background(date.getDate() == selectedDate.getDate() ? Color.poinrtLightGray : .clear)
                                 .cornerRadius(30)
                             }
                         }.frame(maxWidth: (.infinity - 46) / 7)
@@ -53,11 +53,5 @@ struct CalendarView: View {
                     }.padding(.bottom, 25)
                 )
         }
-    }
-}
-
-struct MenuWeeklyCalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarView(selectedDate: .constant(Date()))
     }
 }
