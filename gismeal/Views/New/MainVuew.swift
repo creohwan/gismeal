@@ -55,7 +55,7 @@ struct MainView: View {
                 }
             }
             .navigationBarItems(
-                trailing: NavigationLink(destination: ContentView()) {
+                trailing: NavigationLink(destination: WidgetSettingView()) {
                     Image(systemName: "gearshape").resizable()
                         .foregroundColor(Color.pointBlue)
                 }

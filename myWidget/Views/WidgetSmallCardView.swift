@@ -14,23 +14,21 @@ struct WidgetSmallCardView: View {
     @State var menu: String = ""
     
     var selectedWidget: String?
+    var selectedRestaurant: Int?
     
-    var scheduleDict = TimeManger().timeMiniSize
     var mealNameDict = NameManagerKor().mealName
-    // TODO: - 추후 학생식당 추가시 수정 필요함
-    var selectedPlace: Int = 2
-    var selectedPlaceName: String = "2학"
     
-    init(selectedWidget: String?) {
+    init(selectedWidget: String?, selectedRestaurant: Int?) {
         self.selectedWidget = selectedWidget
+        self.selectedRestaurant = selectedRestaurant
+        
         if self.selectedWidget == "lunch_corner" {
             let newSelectedWidget = checkLunchCorner(menu: self.selectedWidget!)
             self.selectedWidget = newSelectedWidget
         }
-        self.scheduleDict = TimeManger().timeMiniSize
-        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().widgetMealName
-        // TODO: - 추후 학생식당 추가시 수정 필요함
-        self.selectedPlaceName = selectedPlace == 2 ? " 2학 " : " 1학 "
+        
+        // TODO:- 추후 언어 설정 시 수정해야 함
+//        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().widgetMealName
     }
     
     var body: some View {
@@ -44,8 +42,11 @@ struct WidgetSmallCardView: View {
         .background(Color.white)
         .onAppear{
             self.menu = ""
-            guard let menu = UserDefaults.shared.value(forKey: self.selectedWidget!) as? String
+            print("------------------------")
+            print("\(selectedRestaurant)\(self.selectedWidget!)")
+            guard let menu = UserDefaults.shared.value(forKey: "\(self.selectedRestaurant)\(self.selectedWidget!)") as? String
             else { return }
+            print(menu)
             self.menu = menu
         }
     }
@@ -64,9 +65,7 @@ struct WidgetSmallCardView: View {
                 }
             }
             Spacer()
-//            Text(scheduleDict[selectedWidget ?? "lunch_corner"]!)
-            // TODO: - 추후 학생식당 선택시 로직 필요함
-            Text(selectedPlaceName)
+            Text(self.selectedRestaurant == 1 ? " 1학 " : " 2학 ")
                 .font(.system(size:12))
                 .foregroundColor(Color.white)
                 .padding(.vertical, 3)

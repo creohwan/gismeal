@@ -9,17 +9,17 @@ import SwiftUI
 
 class NetworkManager: ObservableObject {
     
-    @Published var R1Day1Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day2Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day3Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day4Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day5Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
     
-    @Published var R2Day1Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day2Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day3Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day4Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day5Menus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R2Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R2Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R2Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R2Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R2Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
 
     var breakfast: String = ""
     var lunch: String = ""
@@ -76,42 +76,37 @@ class NetworkManager: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         // Decode
-                        let decodedMenus = try JSONDecoder().decode(Menu.self, from: data)
-                   
-                        switch dayIndex {
-                        case 0:
-                            self.R2Day1Menus = decodedMenus
-                            self.saveAtUserDefaults()
-                        case 1:
-                            self.R2Day2Menus = decodedMenus
-                        case 2:
-                            self.R2Day3Menus = decodedMenus
-                        case 3:
-                            self.R2Day4Menus = decodedMenus
-                        default:
-                            self.R2Day5Menus = decodedMenus
-                        }
-                    } catch let error {
-                        print("Error decoding: ", error)
-                    }
-                }
-            } else if response.statusCode == 406 {
-                guard let data = data else { return }
-                DispatchQueue.main.async {
-                    do {
-                        let decodedMenus = try JSONDecoder().decode(NoMenuModel.self, from: data)
-                        switch dayIndex {
-                        case 0:
-                            self.R2Day1Menus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                            self.saveAtUserDefaults()
-                        case 1:
-                            self.R2Day2Menus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                        case 2:
-                            self.R2Day3Menus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                        case 3:
-                            self.R2Day4Menus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                        default:
-                            self.R2Day5Menus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                        let decodedMenus = try JSONDecoder().decode(MenuForm.self, from: data)
+                        
+                        if restaurant == 1 {
+                            switch dayIndex {
+                            case 0:
+                                self.R1Day1Menus = decodedMenus
+                                self.saveAtUserDefaults(restaurant: restaurant)
+                            case 1:
+                                self.R1Day2Menus = decodedMenus
+                            case 2:
+                                self.R1Day3Menus = decodedMenus
+                            case 3:
+                                self.R1Day4Menus = decodedMenus
+                            default:
+                                self.R1Day5Menus = decodedMenus
+                            }
+                             
+                        } else {
+                            switch dayIndex {
+                            case 0:
+                                self.R2Day1Menus = decodedMenus
+                                self.saveAtUserDefaults(restaurant: restaurant)
+                            case 1:
+                                self.R2Day2Menus = decodedMenus
+                            case 2:
+                                self.R2Day3Menus = decodedMenus
+                            case 3:
+                                self.R2Day4Menus = decodedMenus
+                            default:
+                                self.R2Day5Menus = decodedMenus
+                            }
                         }
                     } catch let error {
                         print("Error decoding: ", error)
@@ -123,15 +118,20 @@ class NetworkManager: ObservableObject {
     }
     
     // save data
-    func saveAtUserDefaults() {
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneBreakfast(), forKey: "breakfast")
-
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneLunch(), forKey: "lunch")
- 
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneLunchCorner(), forKey: "lunch_corner")
-
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneDinner(), forKey: "dinner")
-     
+    func saveAtUserDefaults(restaurant: Int) {
+        switch restaurant {
+        case 1:
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneBreakfast(), forKey: "\(restaurant)breakfast")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneLunch(), forKey: "\(restaurant)lunch")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneLunchCorner(), forKey: "\(restaurant)lunch_corner")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneDinner(), forKey: "\(restaurant)dinner")
+        case 2:
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneBreakfast(), forKey: "\(restaurant)breakfast")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneLunch(), forKey: "\(restaurant)lunch")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneLunchCorner(), forKey: "\(restaurant)lunch_corner")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneDinner(), forKey: "\(restaurant)dinner")
+        default:
+            break
+        }
     }
-    
 }

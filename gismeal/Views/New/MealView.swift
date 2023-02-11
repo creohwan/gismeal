@@ -18,7 +18,7 @@ struct MealView: View {
     var mealName = NameManagerKor().mealName
     let mealTime = TimeManger().timeMediumSize
     
-    func setupRestaurantMenu(selectedRestaurant: Int) -> [Menu] {
+    func setupRestaurantMenu(selectedRestaurant: Int) -> [MenuForm] {
         if selectedRestaurant == 1 {
             return [networkManager.R1Day1Menus,
                     networkManager.R1Day2Menus,
@@ -47,7 +47,7 @@ struct MealView: View {
         }
     }
     
-    private func checkMenu(of menu: Menu) -> AnyView {
+    private func checkMenu(of menu: MenuForm) -> AnyView {
         if menu.breakfast == "" && menu.lunch == "" && menu.lunch_corner == "" && menu.dinner == "" {
             if (selectedDate.getDayOfWeekShort() == "토" || selectedDate.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
                 return AnyView(EmptyCard1stWeekView())
@@ -58,7 +58,7 @@ struct MealView: View {
         return isLunchConerEmpty(of: menu)
     }
     
-    private func isLunchConerEmpty(of menu: Menu) -> AnyView {
+    private func isLunchConerEmpty(of menu: MenuForm) -> AnyView {
         if menu.lunch_corner == "\n" || menu.lunch_corner == ""  {
             return AnyView(VStack {
                 CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1))).padding(.vertical,1)

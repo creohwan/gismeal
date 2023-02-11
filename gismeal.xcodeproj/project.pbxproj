@@ -50,6 +50,8 @@
 		4376EFD02995300D00B60BE6 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376EFCE2995300D00B60BE6 /* MealView.swift */; };
 		437F01E629975B1800457501 /* EmptyCard1stWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437F01E529975B1800457501 /* EmptyCard1stWeekView.swift */; };
 		437F01E729975B6100457501 /* EmptyCard1stWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437F01E529975B1800457501 /* EmptyCard1stWeekView.swift */; };
+		438EBD692997826500D4C548 /* WidgetSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EBD682997826500D4C548 /* WidgetSettingView.swift */; };
+		438EBD6A2997826500D4C548 /* WidgetSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EBD682997826500D4C548 /* WidgetSettingView.swift */; };
 		4395578F2982A7600004FBAF /* gismealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4395578E2982A7600004FBAF /* gismealApp.swift */; };
 		439557912982A7600004FBAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439557902982A7600004FBAF /* ContentView.swift */; };
 		439557932982A7600004FBAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 439557922982A7600004FBAF /* Assets.xcassets */; };
@@ -114,6 +116,7 @@
 		4376EFC5299519D900B60BE6 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		4376EFCE2995300D00B60BE6 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
 		437F01E529975B1800457501 /* EmptyCard1stWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCard1stWeekView.swift; sourceTree = "<group>"; };
+		438EBD682997826500D4C548 /* WidgetSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetSettingView.swift; sourceTree = "<group>"; };
 		4395578B2982A7600004FBAF /* gismeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gismeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4395578E2982A7600004FBAF /* gismealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gismealApp.swift; sourceTree = "<group>"; };
 		439557902982A7600004FBAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 				43DB56242995CE07008A44A8 /* New */,
 				435D29462983861A002EFF32 /* OnVoardingViews */,
 				43BD113129850B42005D7C4A /* DeveloperView.swift */,
+				438EBD682997826500D4C548 /* WidgetSettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -411,6 +415,7 @@
 				430FFAA32988DD8500BEC451 /* MealManager.swift in Sources */,
 				430FFA9E2988DD7700BEC451 /* NetworkManager.swift in Sources */,
 				4376EFC829951A8900B60BE6 /* MainVuew.swift in Sources */,
+				438EBD6A2997826500D4C548 /* WidgetSettingView.swift in Sources */,
 				430FFAA82988DE7E00BEC451 /* OnBoardingBasicView.swift in Sources */,
 				430FFAA42988DE5900BEC451 /* ContentView.swift in Sources */,
 				430FFAA12988DD7F00BEC451 /* Color+.swift in Sources */,
@@ -439,6 +444,7 @@
 				430FFA8E2988DD5200BEC451 /* myWidget.intentdefinition in Sources */,
 				4376EFC6299519D900B60BE6 /* DateExtension.swift in Sources */,
 				430022D62987B7BA00A34EC8 /* UserDefaults+.swift in Sources */,
+				438EBD692997826500D4C548 /* WidgetSettingView.swift in Sources */,
 				437F01E629975B1800457501 /* EmptyCard1stWeekView.swift in Sources */,
 				439557A22982A77C0004FBAF /* MealManager.swift in Sources */,
 				435D294F29839A10002EFF32 /* Color+.swift in Sources */,

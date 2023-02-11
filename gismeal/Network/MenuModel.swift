@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Menu: Codable {
+struct MenuForm: Codable {
     var breakfast: String
     var lunch: String
     var lunch_corner: String
