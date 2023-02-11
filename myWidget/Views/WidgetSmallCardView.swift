@@ -81,7 +81,7 @@ struct WidgetSmallCardView: View {
                     .font(.system(size: 14))
                     .foregroundColor(Color.black)
             } else {
-                Text("위젯 재설정 이후,\n위젯을 다시 추가해주세요")
+                Text("앱 우측 상단\n설정 버튼 클릭 후,\n위젯을 재설정 해주세요.")
                     .font(.system(size: 14))
                     .foregroundColor(Color.black)
             }

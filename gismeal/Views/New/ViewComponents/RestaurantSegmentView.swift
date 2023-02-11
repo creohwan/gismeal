@@ -16,7 +16,7 @@ struct RestaurantSegmentView: View {
             ForEach(pickerIndex.indices, id:\.self) { restaurantNum in
                 ZStack {
                     Rectangle()
-                        .fill(Color(UIColor.lightGray))
+                        .fill(Color.pointGray)
                     
                     RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(.pointRed)
@@ -28,7 +28,7 @@ struct RestaurantSegmentView: View {
                 .overlay(
                     Text(pickerIndex[restaurantNum])
                         .font(.system(size: 18))
-                        .fontWeight(selectedRestaurant == restaurantNum ? .bold : .medium)
+                        .fontWeight(selectedRestaurant == restaurantNum ? .bold : .regular)
                         .foregroundColor(selectedRestaurant == restaurantNum ? .white : .foregroundColor)
                 )
             }

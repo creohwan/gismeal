@@ -17,7 +17,7 @@ struct MainView: View {
     @EnvironmentObject var networkManager: NetworkManager
     
     @State private var selectedLanguage: Bool = true
-    @State var selectedRestaurant = 0
+    @State var selectedRestaurant = 1
     @State var selectedDate = Date()
 
     // body

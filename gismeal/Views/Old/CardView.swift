@@ -23,25 +23,29 @@ struct CardView: View {
                     // Name
                     Text(mealName)
                         .bold()
+                        .padding(.leading, 10)
                     Spacer()
                     // Time
                     Text(mealTime)
                         .font(.system(size: 12))
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.foregroundColor)
                         .padding(.vertical, 3)
-                        .padding(.horizontal, 5)
-                        .background(Color.backgroundColor)
-                        .cornerRadius(12)
+                        .padding(.leading, 5)
+                        .padding(.trailing, 10)
                 }
                 // Food
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(mealMenu)
-                }
+                    Text(mealMenu).lineSpacing(4)
+                }.padding(.leading, 10)
             }
             .frame(width: 300, alignment: .leading)
             .padding()
             .background(Color.white)
             .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.poinrtLightGray, lineWidth: 1)
+            )
         }
         
     }
