@@ -30,15 +30,18 @@ class NetworkManager: ObservableObject {
     
     func getMenus(by language: Bool) -> Void {
         getMenu(restaurant: 1, dayIndex: 0, language: language)
-        getMenu(restaurant: 1, dayIndex: 1, language: language)
-        getMenu(restaurant: 1, dayIndex: 2, language: language)
-        getMenu(restaurant: 1, dayIndex: 3, language: language)
-        getMenu(restaurant: 1, dayIndex: 4, language: language)
-        
         getMenu(restaurant: 2, dayIndex: 0, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 1, language: language)
         getMenu(restaurant: 2, dayIndex: 1, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 2, language: language)
         getMenu(restaurant: 2, dayIndex: 2, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 3, language: language)
         getMenu(restaurant: 2, dayIndex: 3, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 4, language: language)
         getMenu(restaurant: 2, dayIndex: 4, language: language)
     }
     

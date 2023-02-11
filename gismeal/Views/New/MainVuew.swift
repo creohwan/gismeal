@@ -12,13 +12,17 @@ import WidgetKit
 struct MainView: View {
     
     // Define
-    @Environment(\.scenePhase) var scenePhase
     @AppStorage("isFirstLaunching") var isFirstLaunching: Bool = true
     @EnvironmentObject var networkManager: NetworkManager
     
-    @State private var selectedLanguage: Bool = true
-    @State var selectedRestaurant = 1
+    @State private var selectedLanguage: Bool = true 
+    @State var selectedRestaurant = 0
     @State var selectedDate = Date()
+    
+    init(){
+       UIPageControl.appearance().currentPageIndicatorTintColor = .black
+       UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+     }
 
     // body
     var body: some View {
@@ -56,12 +60,6 @@ struct MainView: View {
                         .foregroundColor(Color.pointBlue)
                 }
             )
-        }
-        .onChange(of: scenePhase) {
-            newPhase in
-            if newPhase == .active {
-                networkManager.getMenus(by: selectedLanguage)
-            }
         }
         .onAppear {
             networkManager.getMenus(by: selectedLanguage)

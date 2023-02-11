@@ -49,7 +49,11 @@ struct MealView: View {
     
     private func checkMenu(of menu: Menu) -> AnyView {
         if menu.breakfast == "" && menu.lunch == "" && menu.lunch_corner == "" && menu.dinner == "" {
-            return AnyView(EmptyCardView())
+            if (selectedDate.getDayOfWeekShort() == "토" || selectedDate.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
+                return AnyView(EmptyCard1stWeekView())
+            } else {
+                return AnyView(EmptyCardView())
+            }
         }
         return isLunchConerEmpty(of: menu)
     }
