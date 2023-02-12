@@ -9,17 +9,17 @@ import SwiftUI
 
 class NetworkManager: ObservableObject {
     
-    @Published var R1Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R1Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
     
-    @Published var R2Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var R2Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R2Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
 
     var breakfast: String = ""
     var lunch: String = ""
@@ -76,7 +76,10 @@ class NetworkManager: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         // Decode
-                        let decodedMenus = try JSONDecoder().decode(MenuForm.self, from: data)
+                        var decodedMenus = try JSONDecoder().decode(MenuForm.self, from: data)
+                        
+                        decodedMenus.setupAllMenu()
+                        
                         if restaurant == 1 {
                             switch dayIndex {
                             case 0:

@@ -38,40 +38,34 @@ struct MenuView: View {
         let selectedDayIndex = selectedDate.getDayIndex()
         let menusList = setupRestaurantMenu(selectedRestaurant: selectedRestaurant)
         let menu = menusList[selectedDayIndex]
-        
+        let key = menu.returnBool()
         ScrollView(showsIndicators: false) {
             VStack {
-                checkMenu(of: menu)
-                Spacer().frame(height: 90)
+                if key == [false, false, false, false, false] {
+                    if (selectedDate.getDayOfWeekShort() == "토" || selectedDate.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
+                        EmptyCard1stWeekView()
+                    } else {
+                        EmptyCardView()
+                    }
+                } else {
+                    if key[0] {
+                        CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: menu.breakfast)
+                    }
+                    if key[1] {
+                        CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: menu.lunch_corner)
+                    }
+                    if key[2] {
+                        CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: menu.lunch)
+                    }
+                    if key[3] {
+                        CardView(mealName: mealName["lunch_corner_2"]!, mealTime: mealTime["lunch_corner_2"]!, mealMenu: menu.lunch_corner_2)
+                    }
+                    if key[4] {
+                        CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: menu.dinner)
+                    }
+                    Spacer().frame(height: 90)
+                }
             }
-        }
-    }
-    
-    private func checkMenu(of menu: MenuForm) -> AnyView {
-        if menu.breakfast == "" && menu.lunch == "" && menu.lunch_corner == "" && menu.dinner == "" {
-            if (selectedDate.getDayOfWeekShort() == "토" || selectedDate.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
-                return AnyView(EmptyCard1stWeekView())
-            } else {
-                return AnyView(EmptyCardView())
-            }
-        }
-        return isLunchConerEmpty(of: menu)
-    }
-    
-    private func isLunchConerEmpty(of menu: MenuForm) -> AnyView {
-        if menu.lunch_corner == "\n" || menu.lunch_corner == ""  {
-            return AnyView(VStack {
-                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1))).padding(.vertical,1)
-                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1))).padding(.vertical,1)
-                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1))).padding(.vertical,1)
-            })
-        } else {
-            return AnyView(VStack {
-                CardView(mealName: mealName["breakfast"]!, mealTime: mealTime["breakfast"]!, mealMenu: String(menu.breakfast.dropLast(1))).padding(.vertical,1)
-                CardView(mealName: mealName["lunch_corner"]!, mealTime: mealTime["lunch_corner"]!, mealMenu: String(menu.lunch_corner.dropLast(1))).padding(.vertical,1)
-                CardView(mealName: mealName["lunch"]!, mealTime: mealTime["lunch"]!, mealMenu: String(menu.lunch.dropLast(1))).padding(.vertical,1)
-                CardView(mealName: mealName["dinner"]!, mealTime: mealTime["dinner"]!, mealMenu: String(menu.dinner.dropLast(1))).padding(.vertical,1)
-            })
         }
     }
 }

@@ -15,157 +15,33 @@ struct WidgetSettingView: View {
     @State var selectedRestaurant: Int = 1
     @State var selectedMenu: Int = 5
     
+    let mealNameDict = NameManagerKor().widgetSettingMealName
+    
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
-                
                 Text("위젯에 보일 내용을 선택하세요")
                     .font(.title2)
-                
                 Spacer().frame(height: 30)
-                
                 HStack {
-                    RoundedRectangle(cornerRadius: 50)
-                        .foregroundColor(Color.foregroundColor)
-                        .frame(width: 100, height: 50)
-                        .overlay(
-                            Text("식당 설정")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                        )
-                    
-                    Spacer().frame(width: 30)
+                    settingTitleViewBuilder(settingTitle: "식당 설정")
+                    Divider().frame(width: 30, height: 100)
                     VStack {
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedRestaurant == 1 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("1학생식당")
-                                    .foregroundColor(self.selectedRestaurant == 1 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedRestaurant == 1 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedRestaurant = 1
-                                updateSelectedRestaurant(restaurant: 1)
-                            }
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedRestaurant == 2 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("2학생식당")
-                                    .foregroundColor(self.selectedRestaurant == 2 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedRestaurant == 2 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedRestaurant = 2
-                                updateSelectedRestaurant(restaurant: 2)
-                            }
+                        restaurantViewBuilder(restaurantInt: 1, restaurantTitle: "1학생식당")
+                        restaurantViewBuilder(restaurantInt: 2, restaurantTitle: "2학생식당")
                     }
                 }
-                
                 Spacer().frame(height: 50)
-                
                 HStack {
-                    RoundedRectangle(cornerRadius: 50)
-                        .foregroundColor(Color.foregroundColor)
-                        .frame(width: 100, height: 50)
-                        .overlay(
-                            Text("메뉴 설정")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                        )
-                    
-                    Spacer().frame(width: 30)
+                    settingTitleViewBuilder(settingTitle: "메뉴 설정")
+                    Divider().frame(width: 30, height: 280)
                     VStack {
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedMenu == 1 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("오늘 점심(일반)")
-                                    .foregroundColor(self.selectedMenu == 1 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedMenu == 1 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedMenu = 1
-                                updateSelectedWidget(meal: "breakfast")
-                            }
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedMenu == 2 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("오늘 점심(일반)")
-                                    .foregroundColor(self.selectedMenu == 2 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedMenu == 2 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedMenu = 2
-                                updateSelectedWidget(meal: "lunch")
-                            }
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedMenu == 3 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("오늘 점심(코너)")
-                                    .foregroundColor(self.selectedMenu == 3 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedMenu == 3 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedMenu = 3
-                                updateSelectedWidget(meal: "lunch_corner")
-                            }
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedMenu == 4 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("오늘 저녁")
-                                    .foregroundColor(self.selectedMenu == 4 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedMenu == 4 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedMenu = 4
-                                updateSelectedWidget(meal: "dinner")
-                            }
-                        RoundedRectangle(cornerRadius: 50)
-                            .foregroundColor(self.selectedMenu == 5 ? .pointRed : .white)
-                            .frame(width: 130, height: 50)
-                            .overlay(
-                                Text("시간에 맞추기")
-                                    .foregroundColor(self.selectedMenu == 5 ? .white : Color.foregroundColor)
-                                    .fontWeight(self.selectedMenu == 5 ? .semibold : .regular)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.poinrtLightGray, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                self.selectedMenu = 5
-                                updateSelectedWidget(meal: "onTime")
-                            }
+                        mealViewBuilder(menuInt: 1, menuTitle: "breakfast")
+                        mealViewBuilder(menuInt: 2, menuTitle: "lunch_corner")
+                        mealViewBuilder(menuInt: 3, menuTitle: "lunch")
+                        mealViewBuilder(menuInt: 4, menuTitle: "dinner")
+                        mealViewBuilder(menuInt: 5, menuTitle: "onTime")
                     }
                 }
                 Spacer()
@@ -176,6 +52,57 @@ struct WidgetSettingView: View {
             .navigationBarBackButtonHidden(true)
         }
     }
+    
+    func settingTitleViewBuilder(settingTitle: String ) -> some View {
+        RoundedRectangle(cornerRadius: 50)
+            .foregroundColor(Color.foregroundColor)
+            .frame(width: 100, height: 50)
+            .overlay(
+                Text(settingTitle)
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+            )
+    }
+    
+    func restaurantViewBuilder(restaurantInt: Int, restaurantTitle: String) -> some View {
+        RoundedRectangle(cornerRadius: 50)
+            .foregroundColor(self.selectedRestaurant == restaurantInt ? .pointRed : .white)
+            .frame(width: 165, height: 50)
+            .overlay(
+                Text(restaurantTitle)
+                    .foregroundColor(self.selectedRestaurant == restaurantInt ? .white : Color.foregroundColor)
+                    .fontWeight(self.selectedRestaurant == restaurantInt ? .semibold : .regular)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color.poinrtLightGray, lineWidth: 1)
+            )
+            .onTapGesture {
+                self.selectedRestaurant = restaurantInt
+                updateSelectedRestaurant(restaurant: restaurantInt)
+            }
+    }
+    
+    func mealViewBuilder(menuInt: Int, menuTitle: String) -> some View {
+        RoundedRectangle(cornerRadius: 50)
+            .foregroundColor(self.selectedMenu == menuInt ? .pointRed : .white)
+            .frame(width: 165, height: 50)
+            .overlay(
+                Text(mealNameDict[menuTitle]!)
+                    .foregroundColor(self.selectedMenu == menuInt ? .white : Color.foregroundColor)
+                    .fontWeight(self.selectedMenu == menuInt ? .semibold : .regular)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color.poinrtLightGray, lineWidth: 1)
+            )
+            .onTapGesture {
+                self.selectedMenu = menuInt
+                updateSelectedWidget(meal: menuTitle)
+            }
+    }
+   
+
 }
 
 fileprivate func updateSelectedWidget(meal: String) {
