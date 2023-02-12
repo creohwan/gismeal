@@ -71,10 +71,10 @@ struct WidgetSmallCardView: View {
             Text(self.selectedRestaurant == 1 ? " 1학 " : " 2학 ")
                 .font(.system(size:12))
                 .foregroundColor(Color.white)
+                .fontWeight(.bold)
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
                 .background(Color.pointRed)
-                .bold()
                 .cornerRadius(10)
         }.padding(.bottom, 2)
         VStack(alignment: .leading, spacing: 2){

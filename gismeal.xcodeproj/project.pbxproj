@@ -59,6 +59,10 @@
 		439557A22982A77C0004FBAF /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4395579F2982A77C0004FBAF /* MealManager.swift */; };
 		43BAC3932994D000008EDA38 /* RestaurantSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BAC3922994D000008EDA38 /* RestaurantSegmentView.swift */; };
 		43BD113229850B42005D7C4A /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BD113129850B42005D7C4A /* DeveloperView.swift */; };
+		43BD611E2998AF2000706EE3 /* WidgetSmallCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430FFA992988DD6C00BEC451 /* WidgetSmallCardView.swift */; };
+		43BD611F2998AF2400706EE3 /* WidgetMediumCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430FFAAC2988F58100BEC451 /* WidgetMediumCardView.swift */; };
+		43BD61202998AF2700706EE3 /* BasicEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430FFA982988DD6C00BEC451 /* BasicEntryView.swift */; };
+		43BD61212998AF2A00706EE3 /* myWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430FFA872988DD5100BEC451 /* myWidget.swift */; };
 		43C3FB3129926BDE00275E15 /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BD113129850B42005D7C4A /* DeveloperView.swift */; };
 /* End PBXBuildFile section */
 
@@ -433,6 +437,8 @@
 				430022D62987B7BA00A34EC8 /* UserDefaults+.swift in Sources */,
 				438EBD692997826500D4C548 /* WidgetSettingView.swift in Sources */,
 				437F01E629975B1800457501 /* EmptyCard1stWeekView.swift in Sources */,
+				43BD611F2998AF2400706EE3 /* WidgetMediumCardView.swift in Sources */,
+				43BD61202998AF2700706EE3 /* BasicEntryView.swift in Sources */,
 				439557A22982A77C0004FBAF /* MealManager.swift in Sources */,
 				435D294F29839A10002EFF32 /* Color+.swift in Sources */,
 				43BAC3932994D000008EDA38 /* RestaurantSegmentView.swift in Sources */,
@@ -440,6 +446,7 @@
 				43BD113229850B42005D7C4A /* DeveloperView.swift in Sources */,
 				439557A12982A77C0004FBAF /* NetworkManager.swift in Sources */,
 				4376EFCF2995300D00B60BE6 /* MenuView.swift in Sources */,
+				43BD611E2998AF2000706EE3 /* WidgetSmallCardView.swift in Sources */,
 				435D294C298386F8002EFF32 /* OnBoardingLastView.swift in Sources */,
 				439557A02982A77C0004FBAF /* MenuModel.swift in Sources */,
 				4346A36A2986B1550080F154 /* CardView.swift in Sources */,
@@ -447,6 +454,7 @@
 				435D2948298386B4002EFF32 /* OnBoardingTabView.swift in Sources */,
 				439557912982A7600004FBAF /* ContentView.swift in Sources */,
 				43002295298791E800A34EC8 /* NoMenuModel.swift in Sources */,
+				43BD61212998AF2A00706EE3 /* myWidget.swift in Sources */,
 				4395578F2982A7600004FBAF /* gismealApp.swift in Sources */,
 				430022972987969900A34EC8 /* EmptyCardView.swift in Sources */,
 			);
