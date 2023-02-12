@@ -15,35 +15,24 @@ struct WidgetMediumCardView: View {
     
     var selectedWidget: String?
     var secondSelectedWidget: String?
+    var selectedRestaurant: Int?
     
-    var scheduleDict = TimeManger().timeMiniSize
     var mealNameDict = NameManagerKor().mealName
 
-    init(selectedWidget: String?) {
+    init(selectedWidget: String?, selectedRestaurant: Int?) {
         self.selectedWidget = selectedWidget
-        self.scheduleDict = TimeManger().timeMiniSize
-        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().mealName : NameManagerKor().mealName
+        self.selectedRestaurant = selectedRestaurant
         
-        if self.selectedWidget == "breakfast" {
-            self.secondSelectedWidget = "lunch_corner"
-        } else if self.selectedWidget == "lunch_corner" {
-            self.secondSelectedWidget = "lunch"
-        } else if self.selectedWidget == "lunch" {
-            self.secondSelectedWidget = "lunch_corner"
-        } else if self.selectedWidget == "dinner" {
-            self.secondSelectedWidget = "dinner"
-            self.selectedWidget = "lunch"
-        } else {
-            self.secondSelectedWidget = self.selectedWidget
-        }
+        // TODO:- 추후 언어 설정 시 수정해야 함
+//        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().mealName : NameManagerKor().mealName
     }
     
     var body: some View {
         HStack{
-            WidgetSmallCardView(selectedWidget: self.selectedWidget)
+            WidgetSmallCardView(selectedWidget: self.selectedWidget, selectedRestaurant: self.selectedRestaurant)
             Divider()
                 .padding(.vertical)
-            WidgetSmallCardView(selectedWidget: self.secondSelectedWidget)
+            WidgetSmallCardView(selectedWidget: self.selectedWidget, selectedRestaurant: self.selectedRestaurant == 1 ? 2 : 1)
         }
     }
 }

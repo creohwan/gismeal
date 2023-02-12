@@ -14,23 +14,21 @@ struct WidgetSmallCardView: View {
     @State var menu: String = ""
     
     var selectedWidget: String?
+    var selectedRestaurant: Int?
     
-    var scheduleDict = TimeManger().timeMiniSize
     var mealNameDict = NameManagerKor().mealName
-    // TODO: - 추후 학생식당 추가시 수정 필요함
-    var selectedPlace: Int = 2
-    var selectedPlaceName: String = "2학"
     
-    init(selectedWidget: String?) {
+    init(selectedWidget: String?, selectedRestaurant: Int?) {
         self.selectedWidget = selectedWidget
+        self.selectedRestaurant = selectedRestaurant
+        
         if self.selectedWidget == "lunch_corner" {
             let newSelectedWidget = checkLunchCorner(menu: self.selectedWidget!)
             self.selectedWidget = newSelectedWidget
         }
-        self.scheduleDict = TimeManger().timeMiniSize
-        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().widgetMealName
-        // TODO: - 추후 학생식당 추가시 수정 필요함
-        self.selectedPlaceName = selectedPlace == 2 ? " 2학 " : " 1학 "
+        
+        // TODO:- 추후 언어 설정 시 수정해야 함
+//        self.mealNameDict = UserDefaults.shared.value(forKey: "LANGUAGE") as! String == "Eng" ? NameManagerEng().widgetMealName : NameManagerKor().widgetMealName
     }
     
     var body: some View {
@@ -44,9 +42,15 @@ struct WidgetSmallCardView: View {
         .background(Color.white)
         .onAppear{
             self.menu = ""
-            guard let menu = UserDefaults.shared.value(forKey: self.selectedWidget!) as? String
-            else { return }
-            self.menu = menu
+            
+            let today = Date()
+            if (today.getDayOfWeekShort() == "토" || today.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
+                self.menu = "1학생식당은 평일에만 운영됩니다"
+            } else {
+                guard let menu = UserDefaults.shared.value(forKey: "\(self.selectedRestaurant!)\(self.selectedWidget!)") as? String
+                else { return }
+                self.menu = menu
+            }
         }
     }
     
@@ -64,14 +68,12 @@ struct WidgetSmallCardView: View {
                 }
             }
             Spacer()
-//            Text(scheduleDict[selectedWidget ?? "lunch_corner"]!)
-            // TODO: - 추후 학생식당 선택시 로직 필요함
-            Text(selectedPlaceName)
+            Text(self.selectedRestaurant == 1 ? " 1학 " : " 2학 ")
                 .font(.system(size:12))
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.white)
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
-                .background(Color.backgroundColor)
+                .background(Color.pointRed)
                 .bold()
                 .cornerRadius(10)
         }.padding(.bottom, 2)
@@ -81,7 +83,7 @@ struct WidgetSmallCardView: View {
                     .font(.system(size: 14))
                     .foregroundColor(Color.black)
             } else {
-                Text("위젯 재설정 이후,\n위젯을 다시 추가해주세요")
+                Text("앱 우측 상단\n설정 버튼 클릭 후,\n위젯을 재설정 해주세요.")
                     .font(.system(size: 14))
                     .foregroundColor(Color.black)
             }

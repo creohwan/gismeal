@@ -9,11 +9,17 @@ import SwiftUI
 
 class NetworkManager: ObservableObject {
     
-    @Published var firstDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var secondDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var thirdDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var fourthDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-    @Published var fifthDayMenus: Menu = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+    @Published var R1Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R1Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    
+    @Published var R2Day1Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day2Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day3Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day4Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
+    @Published var R2Day5Menus: MenuForm = MenuForm(breakfast: "", lunch: "", lunch_corner: "", lunch_corner_2: "", dinner: "")
 
     var breakfast: String = ""
     var lunch: String = ""
@@ -22,83 +28,35 @@ class NetworkManager: ObservableObject {
     
     static let shared = NetworkManager()
     
-    
-    //GET DATE of TODAY || TOMORROW
-    func getDate(of date: String) -> [String:String] {
-        
-        //Define
-        let calendar = Calendar.current
-        let first = Date()
-        let second = calendar.date(byAdding: .day, value: 1, to: first)!
-        let third = calendar.date(byAdding: .day, value: 2, to: first)!
-        let fourth = calendar.date(byAdding: .day, value: 3, to: first)!
-        let fifth = calendar.date(byAdding: .day, value: 4, to: first)!
-        
-        let dateDict: [String:Date] = [
-            "first" : first,
-            "second" : second,
-            "third" : third,
-            "fourth" : fourth,
-            "fifth" : fifth
-        ]
-        
-        let year = String(calendar.component(.year, from: (dateDict[date])!))
-        let month = calendar.component(.month, from: dateDict[date]!)
-        let day = calendar.component(.day, from: dateDict[date]!)
-        let weekday = String(calendar.component(.weekday, from: dateDict[date]!))
-
-        let dayDict = [
-            "1" : "(일)",
-            "2" : "(월)",
-            "3" : "(화)",
-            "4" : "(수)",
-            "5" : "(목)",
-            "6" : "(금)",
-            "7" : "(토)"
-        ]
-        
-        var refinedMonth = String(month)
-        var refinedDay = String(day)
-        let refinedWeekDay = dayDict[weekday]!
-        
-        //formatting
-        if month < 10 {
-            refinedMonth = "0" + String(month)
-        }
-        
-        if day < 10 {
-            refinedDay = "0" + String(day)
-        }
-        
-        //Store UserDefault Data
-        let result = ["year": year, "month": refinedMonth, "day": refinedDay, "weekday": refinedWeekDay]
-        
-        if date == "first" {
-            UserDefaults(suiteName: "group.com.lee.gismeal")?.set(result, forKey: "CURRENTDATE")
-        }
-
-        //Return
-        return result
-    }
-    
     func getMenus(by language: Bool) -> Void {
-        getMenu(of: "first", by: language)
-        getMenu(of: "second", by: language)
-        getMenu(of: "third", by: language)
-        getMenu(of: "fourth", by: language)
-        getMenu(of: "fifth", by: language)
+        getMenu(restaurant: 1, dayIndex: 0, language: language)
+        getMenu(restaurant: 2, dayIndex: 0, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 1, language: language)
+        getMenu(restaurant: 2, dayIndex: 1, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 2, language: language)
+        getMenu(restaurant: 2, dayIndex: 2, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 3, language: language)
+        getMenu(restaurant: 2, dayIndex: 3, language: language)
+        
+        getMenu(restaurant: 1, dayIndex: 4, language: language)
+        getMenu(restaurant: 2, dayIndex: 4, language: language)
     }
     
-    func getMenu(of date: String, by language: Bool? = true) -> Void {
+    func getMenu(restaurant: Int, dayIndex: Int, language: Bool? = true) -> Void {
+        let calendar = Calendar.current
+        let today = Date()
+        let selectedDay = calendar.date(byAdding: .day, value: dayIndex, to: today)!
         
-        let returnedDate = getDate(of: date)
-        let year = returnedDate["year"]!
-        let month = returnedDate["month"]!
-        let day = returnedDate["day"]!
+        let year = calendar.component(.year, from: selectedDay)
+        let month = calendar.component(.month, from: selectedDay)
+        let day = calendar.component(.day, from: selectedDay)
         let languageInt = language == false ? 1 : 0
-
+        
         //URLRequest
-        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/2/\(languageInt)")
+        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/\(restaurant)/\(languageInt)")
         else { fatalError("Missing URL") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
@@ -118,42 +76,39 @@ class NetworkManager: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         // Decode
-                        let decodedMenus = try JSONDecoder().decode(Menu.self, from: data)
-                   
-                        switch date {
-                        case "first":
-                            self.firstDayMenus = decodedMenus
-                            self.saveAtUserDefaults()
-                        case "second":
-                            self.secondDayMenus = decodedMenus
-                        case "third":
-                            self.thirdDayMenus = decodedMenus
-                        case "fourth":
-                            self.fourthDayMenus = decodedMenus
-                        default:
-                            self.fifthDayMenus = decodedMenus
-                        }
-                    } catch let error {
-                        print("Error decoding: ", error)
-                    }
-                }
-            } else if response.statusCode == 406 {
-                guard let data = data else { return }
-                DispatchQueue.main.async {
-                    do {
-                        let decodedMenus = try JSONDecoder().decode(NoMenuModel.self, from: data)
-                        switch date {
-                        case "first":
-                            self.firstDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                            self.saveAtUserDefaults()
-                        case "second":
-                            self.secondDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                        case "third":
-                            self.thirdDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                        case "fourth":
-                            self.fourthDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
-                        default:
-                            self.fifthDayMenus = Menu(breakfast: "", lunch: "", lunch_corner: "", dinner: "")
+                        var decodedMenus = try JSONDecoder().decode(MenuForm.self, from: data)
+                        
+                        decodedMenus.setupAllMenu()
+                        
+                        if restaurant == 1 {
+                            switch dayIndex {
+                            case 0:
+                                self.R1Day1Menus = decodedMenus
+                                self.saveAtUserDefaults(restaurant: restaurant)
+                            case 1:
+                                self.R1Day2Menus = decodedMenus
+                            case 2:
+                                self.R1Day3Menus = decodedMenus
+                            case 3:
+                                self.R1Day4Menus = decodedMenus
+                            default:
+                                self.R1Day5Menus = decodedMenus
+                            }
+                             
+                        } else {
+                            switch dayIndex {
+                            case 0:
+                                self.R2Day1Menus = decodedMenus
+                                self.saveAtUserDefaults(restaurant: restaurant)
+                            case 1:
+                                self.R2Day2Menus = decodedMenus
+                            case 2:
+                                self.R2Day3Menus = decodedMenus
+                            case 3:
+                                self.R2Day4Menus = decodedMenus
+                            default:
+                                self.R2Day5Menus = decodedMenus
+                            }
                         }
                     } catch let error {
                         print("Error decoding: ", error)
@@ -165,15 +120,20 @@ class NetworkManager: ObservableObject {
     }
     
     // save data
-    func saveAtUserDefaults() {
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneBreakfast(), forKey: "breakfast")
-
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneLunch(), forKey: "lunch")
- 
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneLunchCorner(), forKey: "lunch_corner")
-
-        UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.firstDayMenus.oneDinner(), forKey: "dinner")
-     
+    func saveAtUserDefaults(restaurant: Int) {
+        switch restaurant {
+        case 1:
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneBreakfast(), forKey: "\(restaurant)breakfast")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneLunch(), forKey: "\(restaurant)lunch")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneLunchCorner(), forKey: "\(restaurant)lunch_corner")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R1Day1Menus.oneDinner(), forKey: "\(restaurant)dinner")
+        case 2:
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneBreakfast(), forKey: "\(restaurant)breakfast")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneLunch(), forKey: "\(restaurant)lunch")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneLunchCorner(), forKey: "\(restaurant)lunch_corner")
+            UserDefaults(suiteName: "group.com.lee.gismeal")!.set(self.R2Day1Menus.oneDinner(), forKey: "\(restaurant)dinner")
+        default:
+            break
+        }
     }
-    
 }

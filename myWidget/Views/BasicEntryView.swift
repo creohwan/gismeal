@@ -14,23 +14,23 @@ struct myWidgetEntryView : View {
     
     var entry: Provider.Entry
     
-    let CURRENTDATE = UserDefaults.shared.value(forKey: "CURRENTDATE") as? String
-    
-    var SELECTEDWIDGET = UserDefaults.shared.value(forKey: "SELECTEDWIDGET") as? String
-    
     let currentHour = Calendar.current.component(.hour, from: Date())
+    
+    // TODO : 여기서부터 수정
+    var selectedRestaurant = UserDefaults.shared.value(forKey: "restaurant") as? Int
+    var selectedWidget = UserDefaults.shared.value(forKey: "widget") as? String
 
     @ViewBuilder
     var body: some View {
-        let selectedWidget = SELECTEDWIDGET == "onTime" ? returnMealOnTime() : SELECTEDWIDGET
+        let selectedWidget = selectedWidget == "onTime" ? returnMealOnTime() : selectedWidget
         
         switch family{
         case .systemSmall:
-            WidgetSmallCardView(selectedWidget: selectedWidget)
+            WidgetSmallCardView(selectedWidget: selectedWidget, selectedRestaurant: selectedRestaurant)
         default:
-            WidgetMediumCardView(selectedWidget: selectedWidget)
+            WidgetMediumCardView(selectedWidget: selectedWidget,  selectedRestaurant: selectedRestaurant)
         }
-    
+
     }
 }
 

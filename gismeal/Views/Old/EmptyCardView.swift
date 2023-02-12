@@ -16,6 +16,5 @@ struct EmptyCardView: View {
             Text("일요일 저녁 이후에 확인해주세요!")
             Spacer()
         }.frame(width: 300, height: UIScreen.main.bounds.height * 0.6)
-        
     }
 }

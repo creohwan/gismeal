@@ -11,8 +11,6 @@ import Intents
 
 struct Provider: TimelineProvider {
     
-//    @EnvironmentObject var network: NetworkManager
-    
     let date = Date()
     
     func placeholder(in context: Context) -> SimpleEntry {
@@ -40,7 +38,8 @@ struct Provider: TimelineProvider {
             let entry = SimpleEntry(date: date)
 
             do {
-                NetworkManager.shared.getMenu(of: "first")
+                NetworkManager.shared.getMenu(restaurant: 1, dayIndex: 0)
+                NetworkManager.shared.getMenu(restaurant: 2, dayIndex: 0)
                 WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate!))
@@ -49,8 +48,6 @@ struct Provider: TimelineProvider {
                 print(error.localizedDescription)
             }
         }
-        
-        
     }
 }
 
