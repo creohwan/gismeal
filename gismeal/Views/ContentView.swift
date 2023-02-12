@@ -15,7 +15,7 @@ struct ContentView: View {
     @EnvironmentObject var networkManager: NetworkManager
     
     @State private var selectedLanguage: Bool = true
-    @State var selectedRestaurant = 0
+    @State var selectedRestaurant = 1
     @State var selectedDate = Date()
     
     init(){
@@ -68,9 +68,4 @@ struct ContentView: View {
                 .background(Color.backgroundColor)
         }
     }
-}
-
-fileprivate func updateSelectedWidget(meal: String) {
-    UserDefaults(suiteName: "group.com.lee.gismeal")?.set(meal, forKey: "SELECTEDWIDGET")
-    WidgetCenter.shared.reloadTimelines(ofKind: "junghwan")
 }

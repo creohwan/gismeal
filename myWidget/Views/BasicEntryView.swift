@@ -16,7 +16,6 @@ struct myWidgetEntryView : View {
     
     let currentHour = Calendar.current.component(.hour, from: Date())
     
-    // TODO : 여기서부터 수정
     var selectedRestaurant = UserDefaults.shared.value(forKey: "restaurant") as? Int
     var selectedWidget = UserDefaults.shared.value(forKey: "widget") as? String
 

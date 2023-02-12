@@ -24,7 +24,7 @@ struct OnBoardingLastPageView: View {
                 .fontWeight(.bold)
                 .padding()
             Text(subtitle)
-                .font(.title2)
+                .font(.title3)
                 .multilineTextAlignment(.center)
             Text(lasttitle)
                 .font(.title3)
@@ -39,7 +39,7 @@ struct OnBoardingLastPageView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .frame(width: 200, height: 50)
-                    .background(Color.pointBlue)
+                    .background(Color.pointRed)
                     .cornerRadius(6)
             }
             .padding()
@@ -48,6 +48,7 @@ struct OnBoardingLastPageView: View {
     
     private func upadateSetting() {
         UserDefaults(suiteName: "group.com.lee.gismeal")?.set("Kor", forKey: "LANGUAGE")
-        UserDefaults(suiteName: "group.com.lee.gismeal")?.set("onTime", forKey: "SELECTEDWIDGET")
+        UserDefaults(suiteName: "group.com.lee.gismeal")?.set("onTime", forKey: "widget")
+        UserDefaults(suiteName: "group.com.lee.gismeal")?.set(1, forKey: "restaurant")
     }
 }
