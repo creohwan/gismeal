@@ -1,21 +1,20 @@
 //
-//  MainVuew.swift
+//  ContentView.swift
 //  gismeal
 //
-//  Created by creohwan on 2023/02/09.
+//  Created by creohwan on 2023/01/26.
 //
-
 
 import SwiftUI
 import WidgetKit
 
-struct MainView: View {
+struct ContentView: View {
     
     // Define
     @AppStorage("isFirstLaunching") var isFirstLaunching: Bool = true
     @EnvironmentObject var networkManager: NetworkManager
     
-    @State private var selectedLanguage: Bool = true 
+    @State private var selectedLanguage: Bool = true
     @State var selectedRestaurant = 0
     @State var selectedDate = Date()
     
