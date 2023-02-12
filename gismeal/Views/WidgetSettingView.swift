@@ -12,8 +12,8 @@ struct WidgetSettingView: View {
     
     @EnvironmentObject var networkManager: NetworkManager
     
-    @State var selectedRestaurant: Int = 1
-    @State var selectedMenu: Int = 5
+    @Binding var selectedRestaurant: Int
+    @Binding var selectedMenu: Int
     
     let mealNameDict = NameManagerKor().widgetSettingMealName
     
@@ -28,8 +28,8 @@ struct WidgetSettingView: View {
                     settingTitleViewBuilder(settingTitle: "식당 설정")
                     Divider().frame(width: 30, height: 100)
                     VStack {
-                        restaurantViewBuilder(restaurantInt: 1, restaurantTitle: "1학생식당")
-                        restaurantViewBuilder(restaurantInt: 2, restaurantTitle: "2학생식당")
+                        restaurantViewBuilder(restaurantInt: 0, restaurantTitle: "1학생식당")
+                        restaurantViewBuilder(restaurantInt: 1, restaurantTitle: "2학생식당")
                     }
                 }
                 Spacer().frame(height: 50)

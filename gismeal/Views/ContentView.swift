@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var selectedLanguage: Bool = true
     @State var selectedRestaurant = 1
     @State var selectedDate = Date()
+    @State var selectedMenu: Int = 5
     
     init(){
        UIPageControl.appearance().currentPageIndicatorTintColor = .black
@@ -54,7 +55,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarItems(
-                trailing: NavigationLink(destination: WidgetSettingView()) {
+                trailing: NavigationLink(destination: WidgetSettingView(selectedRestaurant: $selectedRestaurant, selectedMenu: $selectedMenu)) {
                     Image(systemName: "gearshape").resizable()
                         .foregroundColor(Color.pointBlue)
                 }
