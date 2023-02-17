@@ -12,6 +12,7 @@ struct ContentView: View {
     
     // Define
     @AppStorage("isFirstLaunching") var isFirstLaunching: Bool = true
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var networkManager: NetworkManager
     
     @State private var selectedLanguage: Bool = true
@@ -60,6 +61,12 @@ struct ContentView: View {
                         .foregroundColor(Color.pointBlue)
                 }
             )
+        }
+        .onChange(of: scenePhase){
+            newPhase in
+            if newPhase == .active {
+                networkManager.getMenus(by: selectedLanguage)
+            }
         }
         .onAppear {
             networkManager.getMenus(by: selectedLanguage)
