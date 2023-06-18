@@ -56,7 +56,7 @@ class NetworkManager: ObservableObject {
         let languageInt = language == false ? 1 : 0
         
         //URLRequest
-        guard let url = URL(string: "http://52.78.225.99:8080/meals/date/\(year)/\(month)/\(day)/\(restaurant)/\(languageInt)")
+        guard let url = URL(string: "http://43.201.94.123:8080/meals/date/\(year)/\(month)/\(day)/\(restaurant)/\(languageInt)")
         else { fatalError("Missing URL") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"

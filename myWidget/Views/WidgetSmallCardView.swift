@@ -44,7 +44,7 @@ struct WidgetSmallCardView: View {
             self.menu = ""
             
             let today = Date()
-            if (today.getDayOfWeekShort() == "토" || today.getDayOfWeekShort() == "일") && selectedRestaurant == 1 {
+            if (today.getDayOfWeekShort() == "토" || today.getDayOfWeekShort() == "일") && selectedRestaurant == 0 {
                 self.menu = "1학생식당은 평일에만 운영됩니다"
             } else {
                 guard let menu = UserDefaults.shared.value(forKey: "\(self.selectedRestaurant!)\(self.selectedWidget!)") as? String
@@ -68,7 +68,7 @@ struct WidgetSmallCardView: View {
                 }
             }
             Spacer()
-            Text(self.selectedRestaurant == 1 ? " 1학 " : " 2학 ")
+            Text(self.selectedRestaurant == 0 ? " 1학 " : " 2학 ")
                 .font(.system(size:12))
                 .foregroundColor(Color.white)
                 .fontWeight(.bold)
